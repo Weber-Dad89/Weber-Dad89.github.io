@@ -7,12 +7,17 @@
                                                 <!-- Styling -->
                                 <!--External Link to Fonts Used-->
 
-<link rel="stylesheet" href="/styles/styles.css"/>
+<link rel="stylesheet" href="/styles/styles.css"/> <!-- Relationship to stylesheet-->
+
+<!-- script linking-->
+<script src="/scripts/javascripts.js"></script> 
+<script src="/scripts/button.js"></script> 
+
 <title>Cipher Sage Portfolio</title> <!-- Title Appears in users browsers tab-->
 </head>
 
 
-<body>
+<body id="main page">
 <header>
 <section id="home">
 <h1>Cipher Sage Webpage</h1>
@@ -47,6 +52,11 @@ journey with me. Cipher Sage commenting out from a shutdown sequence.
 
 <section id="java">
 <main>
+<p id="demo"></p>
+<script>
+document.getElementById("demo").innerHTML = "Hello Dr Rhodes!";
+</script>
+
 <!-- Second Section of Webpage Portfolio-->
 <h2 id="Projects">Future Javascript Projects From Cipher Sage</h2>
 <p class="C$">
@@ -58,6 +68,7 @@ journey with me. Cipher Sage commenting out from a shutdown sequence.
 <section id="settings_lists">
 
 <!-- Javascript Settings Effect Demo-->
+<form method="GET" action="host://losthost/echo.pl" >
 <h3 id="Settings", class="CipherText">Page Settings</h3>
 <ol class="settings_list">
 <li id="setting_1"> Cipher Sage Fave </li>
@@ -67,13 +78,24 @@ journey with me. Cipher Sage commenting out from a shutdown sequence.
 
 <h4 id="current_setting">Current Setting: Light</h4>
 <label for="next-setting">What setting do you want to select next?</label>
-<select name="next-setting" id="next-setting"><option>
+<select name="next-setting" id="next-setting" size="1"><option>
 <option value="Ç$ Fave">Ç$ Fave</option>
 <option value="Oblivion Spark">Oblivion Spark</option>
 <option value="Loveless">Loveless</option>
+<p>
+<input type="submit" value="Apply Settings to Webpage" id="Applybtn">
+</p>
 </select>
 
+
+<!--Fieldset to go here-->
+<input type="reset" value="Reset Settings">
+<input type="button" value="Random" id="btn">
+</form>
+
 </section>
+
+<p id="demo2"></p>
 </main>
 <!--End of Portfolio for Now-->
 

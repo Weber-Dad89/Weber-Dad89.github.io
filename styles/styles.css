@@ -1,7 +1,13 @@
 body {
 	background-color: lightblue;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center top;;
 }
 
+img {
+	position:right;
+}
 
 header {
 	background-color: rebeccapurple;
@@ -24,6 +30,9 @@ h1 {
 	text-align: center;
 }
 
+ol {
+	text-align: center;
+}
 /* Styling For Text  various texts on the page*/ 
 .CipherText {
 	font-size: 12px;
