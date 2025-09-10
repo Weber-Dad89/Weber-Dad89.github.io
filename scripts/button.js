@@ -1,5 +1,4 @@
-function choose() {
-    document.getElementById("Applybtn").onclick=choose;
+function CipherSageFave() {
+    document.getElementById('mainPage').style="background-color: black; color: green;";
 }
 
-onload=init;

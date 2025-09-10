@@ -1,12 +1,6 @@
 body {
 	background-color: lightblue;
-	background-repeat: no-repeat;
-	background-attachment: fixed;
-	background-position: center top;;
-}
-
-img {
-	position:right;
+	color: rgb(0,50,0);
 }
 
 header {
@@ -30,9 +24,16 @@ h1 {
 	text-align: center;
 }
 
-ol {
-	text-align: center;
-}
+#settings_lists, .settingsList {
+        text-align: center; /* Centers the inline-block ol */
+    }
+
+    .settingsList ol {
+        display: inline-block; /* Allows ol to be centered by text-align */
+        text-align: left; /* Aligns the text within the list items */
+    }
+
+
 /* Styling For Text  various texts on the page*/ 
 .CipherText {
 	font-size: 12px;
@@ -45,6 +46,7 @@ ol {
 	letter-spacing: 2pt;
 	color: whitesmoke;	
 	font-family: OrbitronLight;
+	text-align: center;
 	}
 
 footer {

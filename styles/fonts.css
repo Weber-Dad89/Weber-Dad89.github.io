@@ -1,0 +1,89 @@
+.Orbitron-Header {
+  font-family: "Orbitron", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.electrolize-regular {
+  font-family: "Electrolize", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.michroma-regular {
+  font-family: "Michroma", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.quantico-regular {
+  font-family: "Quantico", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.quantico-bold {
+  font-family: "Quantico", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.quantico-regular-italic {
+  font-family: "Quantico", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.quantico-bold-italic {
+  font-family: "Quantico", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.geo-regular {
+  font-family: "Geo", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.geo-regular-italic {
+  font-family: "Geo", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.zen-dots-regular {
+  font-family: "Zen Dots", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.iceberg-regular {
+  font-family: "Iceberg", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.silkscreen-regular {
+  font-family: "Silkscreen", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.silkscreen-bold {
+  font-family: "Silkscreen", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+
+.nabla-SpecialText {
+  font-family: "Nabla", system-ui;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "EDPT" 100,
+    "EHLT" 12;
+}

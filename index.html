@@ -6,8 +6,12 @@
     
                                                 <!-- Styling -->
                                 <!--External Link to Fonts Used-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Electrolize&family=Geo:ital@0;1&family=Iceberg&family=Michroma&family=Nabla&family=Orbitron:wght@400..900&family=Quantico:ital,wght@0,400;0,700;1,400;1,700&family=Silkscreen:wght@400;700&family=Zen+Dots&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="/styles/styles.css"/> <!-- Relationship to stylesheet-->
+<link rel="stylesheet" href="/styles/fonts.css"/> <!-- Relationship to internal Stylesheet-->
+<link rel="stylesheet" href="/styles/styles.css"/> <!-- Relationship to internal Stylesheet-->
 
 <!-- script linking-->
 <script src="/scripts/javascripts.js"></script> 
@@ -17,7 +21,7 @@
 </head>
 
 
-<body id="main page">
+<body id="mainPage">
 <header>
 <section id="home">
 <h1>Cipher Sage Webpage</h1>
@@ -31,71 +35,54 @@
 <figure>
 <img id="CS1" src="./images/PFP_Normal_Mike.jpg" alt="A black dude with a smirk grin in the middle of downtown Salt Lake taking a selfie."
 title="This is a photo of Cipher Sage"/>
-<figcaption class="caption">
+<figcaption class="caption" size=".5">
 This is Cipher Sage
 </figcaption>
 </figure>
 </section>
 
 
-<section id="aboutme">
+<!-- Main Page Section-->
+<main>
+
 <!--My About Me Section-->
+<section id="aboutme">
+<h2>Get To Know Me</h2>
 <p class="SageText">
-Hello and welcome to my web development portfolio page. The purpose of this site is used to introduce myself and showcase some of my work in web development and javascript.
+
+&#9; Hello and welcome to my web development portfolio page. The purpose of this site is used to introduce myself and showcase some of my work in web development and javascript.
 I am a current Computer science student at Weber State Univ working on my second bachelors degree. My current hobbies include reading, listening to audiobooks, cooking, hanging with the family
-playing games, and watching movies. MY wife and I have 3 little ones, 2 teenagae boys and a little girl and 5 pets! Needless to say there's never a dull moment in our home. Anywhom, I decided to
+playing games, and watching movies. My wife and I have 3 little ones, 2 teenagae boys and a little girl and 5 pets! Needless to say there's never a dull moment in our home. Anywhom, I decided to
 go down this route becuase I've always had an interest in computers but never took the effort to learn more. My knowledge in the computer science field is at a novice level, I'd say. I have come
 to find out, the more I learn the more I don't know. Therfore, I've accepted I will forever be a student of this field, eager for knowledge. I am excited for YOU to experience this Web Development
 journey with me. Cipher Sage commenting out from a shutdown sequence.
+
 </p>
 </section>
 
-<section id="java">
-<main>
-<p id="demo"></p>
-<script>
-document.getElementById("demo").innerHTML = "Hello Dr Rhodes!";
-</script>
 
 <!-- Second Section of Webpage Portfolio-->
+<section id="java">
 <h2 id="Projects">Future Javascript Projects From Cipher Sage</h2>
-<p class="C$">
-    Ç$
+<p class="SageText">
+Ç$
 </p>
 </section>
 
-
-<section id="settings_lists">
 
 <!-- Javascript Settings Effect Demo-->
-<form method="GET" action="host://losthost/echo.pl" >
-<h3 id="Settings", class="CipherText">Page Settings</h3>
-<ol class="settings_list">
-<li id="setting_1"> Cipher Sage Fave </li>
-<li id="setting_2"> Oblivion Spark </li>
-<li id="setting_3"> Loveless </li>
-</ol>
-
-<h4 id="current_setting">Current Setting: Light</h4>
+ <section id="settings_lists">
+<h3 id="Settings">Page Settings</h3>
+<p>Current settings: <span id="Setting">Default</span></p>
 <label for="next-setting">What setting do you want to select next?</label>
-<select name="next-setting" id="next-setting" size="1"><option>
-<option value="Ç$ Fave">Ç$ Fave</option>
-<option value="Oblivion Spark">Oblivion Spark</option>
-<option value="Loveless">Loveless</option>
-<p>
-<input type="submit" value="Apply Settings to Webpage" id="Applybtn">
-</p>
-</select>
-
-
-<!--Fieldset to go here-->
-<input type="reset" value="Reset Settings">
-<input type="button" value="Random" id="btn">
-</form>
-
+<ol class="settingsList">
+    <li><button onclick="CipherSageFave()" id="Setting1"> Cipher Sage Fave </button></li>
+    <li><button onclick="OblivionSpark()"> Oblivion Spark </button></li>
+    <li><button onclick="Loveless()"> Loveless </button></li>
+</ol>
 </section>
 
-<p id="demo2"></p>
+
 </main>
 <!--End of Portfolio for Now-->
 
@@ -103,12 +90,9 @@ document.getElementById("demo").innerHTML = "Hello Dr Rhodes!";
 <footer>
  <p>
 © Michael Ford 2025
-<!-- Juust messing around here-->
-<form name="GatherInfo"
- method="GET">
-<input type=button name="contactInfo"
-value="Click Here!" width="100" height="100"/>
 </p>
 </footer>
+
+
 </body>
 </html>
