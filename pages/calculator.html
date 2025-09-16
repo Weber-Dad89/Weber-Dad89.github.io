@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="index" href="./index.html"/> <!-- Relationship to index page-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/styles.css">
+    
+    <script src="../scripts/button.js"></script>
+
+    <title>Shape Calculator</title>
+</head>
+<body id="calPage">
+
+<header>
+    <nav>
+    <section id="calNav">
+    <a href="/pages/index.html" id="homeNav">Sage Page</a>
+    </nav>
+    
+    <h1 style="color: black;text-align: center;">Trapezoid Calculator<hr></h1>
+
+        <p>
+        Hello and welcome to the Trapezoid Calculator Webpage. According to Wikipedia, a trapezoid is a quadrilateral that has at least one pair of parallel sides. 
+        The parallel sides are called the bases of the trapezoid. The other two sides are called the legs or lateral sides. A bridge would be an example of a trapezoid.
+    </p>
+</header>
+
+
+
+    <section id="example">
+    <h2 style="text-align: left;">
+        Trapezoid Example
+    </h2>
+    <img id="trapExample" src="../images/" alt="Bridge example of trapezoid.">
+    </section>
+
+    <section id="2D">
+    <h3>2D Perimeter (Addition Operator Calculator)</h3>
+    <p>
+        Perimeter = a + b + c + d 
+    </p>
+
+    <p><label for='a'>a</label><input type=number id='aPerimeter'></p>
+    <p><label for='b'>b</label><input type=number id='bPerimeter'></p>
+    <p><label for='c'>c</label><input type=number id='cPerimeter'></p>
+    <p><label for='d'>d</label><input type=number id='dPerimeter'></p>	
+    <button onclick='add()'>+</button>
+    <p>Result: <span id='Perimeter'></span></p>
+
+    <h3>
+    2D Area (Division Operator Calculator)
+    </h3>
+    <p>
+        Area = h*[(a + b) / 2]
+    </p>
+
+    <p><label for='h'>h</label><input type='text' id='areaHeight'></p>
+    <p><label for='a'>a</label><input type='text' id='aArea'></p>
+    <p><label for='b'>b</label><input type=number id='bArea'></p>	
+    <button onclick='area()'>/</button>
+    <p>Result: <span id='Area'></span></p>
+    <br><br><hr><br><br>
+    </section>
+
+
+    <section id="3D">
+        <h3>
+            3D Volume ( )
+        </h3>
+        <p>
+            Volume = 1/2 (a + b) h * l
+        </p>
+    <br><br><hr><br><br>
+    </section>
+
+
+    <script> // Get ready for some JS //
+
+        function perimeter() {
+                let aPerimeter = document.getElementById('aPerimeter').value;
+                let bPerimeter = document.getElementById('bPerimeter').value;
+                let cPerimeter = document.getElementById('cPerimeter').value;
+                let dPerimeter = document.getElementById('dPerimeter').value;
+                // TODO: Addition operation
+                result = parseFloat(aPerimeter) + parseFloat(bPerimeter) + parseFloat(cPerimeter) + parseFloat(dPerimeter);
+                document.getElementById('Perimeter').innerHTML = result;
+            }
+       
+        function area() {
+                let h = document.getElementById('hArea').value;
+                let a = document.getElementById('aArea').value;
+                let b = document.getElementById('bArea').value;
+                // TODO: Order of Operations for Area of Trapezoid
+                let result = parseFloat(a) + parseFloat(b) / 2;
+                result *= h;
+                document.getElementById('Area').innerHTML = result;
+            }
+
+        function volume() {
+                let a = document.getElementById('a').value;
+                let b = document.getElementById('b').value;
+                let c = document.getElementById('c').value;
+                let d = document.getElementById('d').value;
+                // TODO: Addition operation
+                result = parseFloat(a) + parseFloat(b) + parseFloat(c) + parseFloat(d);
+                document.getElementById('Perimeter').innerHTML = result;
+            }
+
+
+
+
+    </script>
+
+
+</body>
+</html>
