@@ -28,6 +28,16 @@
 </header>
 
 
+<section id="instructions">
+<p>
+    Limitations: Please enter numbers only. This is only a basic calculator.<br>
+    Thank you for your cooperation.
+</p>
+
+
+</section>
+
+
 
     <section id="example">
     <h2 style="text-align: left;">
@@ -42,24 +52,24 @@
         Perimeter = a + b + c + d 
     </p>
 
-    <p><label for='a'>a</label><input type=number id='aPerimeter'></p>
-    <p><label for='b'>b</label><input type=number id='bPerimeter'></p>
-    <p><label for='c'>c</label><input type=number id='cPerimeter'></p>
-    <p><label for='d'>d</label><input type=number id='dPerimeter'></p>	
-    <button onclick='add()'>+</button>
+    <p><label for='a1'>a1</label><input type='text' id='a1Perimeter'></p>
+    <p><label for='b1'>b1</label><input type='text' id='b1Perimeter'></p>
+    <p><label for='a2'>a2</label><input type='text' id='a2Perimeter'></p>
+    <p><label for='b2'>b2</label><input type='text' id='b2Perimeter'></p>	
+    <button onclick='perimeter()'>Perimeter</button>
     <p>Result: <span id='Perimeter'></span></p>
 
     <h3>
     2D Area (Division Operator Calculator)
     </h3>
     <p>
-        Area = h*[(a + b) / 2]
+        Area = h*[(b1 + b2) / 2]
     </p>
 
-    <p><label for='h'>h</label><input type='text' id='areaHeight'></p>
-    <p><label for='a'>a</label><input type='text' id='aArea'></p>
-    <p><label for='b'>b</label><input type=number id='bArea'></p>	
-    <button onclick='area()'>/</button>
+    <p><label for='h'>height</label><input type='text' id='hArea'></p>
+    <p><label for='b1'>b1</label><input type='text' id='b1Area'></p>
+    <p><label for='b2'>b2</label><input type='text' id='b2Area'></p>	
+    <button onclick='area()'>Area</button>
     <p>Result: <span id='Area'></span></p>
     <br><br><hr><br><br>
     </section>
@@ -72,6 +82,12 @@
         <p>
             Volume = 1/2 (a + b) h * l
         </p>
+    <p><label for='a'>a</label><input type='text' id='aVolume'></p>
+    <p><label for='b'>b</label><input type='text' id='bVolume'></p>
+    <p><label for='h'>height</label><input type='text' id='hVolume'></p>
+    <p><label for='l'>length</label><input type='text' id='lVolume'></p>	
+    <button onclick='volume()'>/</button>
+    <p>Result: <span id='Volume'></span></p>
     <br><br><hr><br><br>
     </section>
 
@@ -79,33 +95,36 @@
     <script> // Get ready for some JS //
 
         function perimeter() {
-                let aPerimeter = document.getElementById('aPerimeter').value;
-                let bPerimeter = document.getElementById('bPerimeter').value;
-                let cPerimeter = document.getElementById('cPerimeter').value;
-                let dPerimeter = document.getElementById('dPerimeter').value;
+                let a = document.getElementById('a1Perimeter').value;
+                let b = document.getElementById('b1Perimeter').value;
+                let c = document.getElementById('a2Perimeter').value;
+                let d = document.getElementById('b2Perimeter').value;
                 // TODO: Addition operation
-                result = parseFloat(aPerimeter) + parseFloat(bPerimeter) + parseFloat(cPerimeter) + parseFloat(dPerimeter);
+                const result = parseFloat(a) + parseFloat(b) + parseFloat(c) + parseFloat(d);
+                console.log(result)
                 document.getElementById('Perimeter').innerHTML = result;
             }
        
         function area() {
                 let h = document.getElementById('hArea').value;
-                let a = document.getElementById('aArea').value;
-                let b = document.getElementById('bArea').value;
+                let b1 = document.getElementById('b1Area').value;
+                let b2 = document.getElementById('b2Area').value;
                 // TODO: Order of Operations for Area of Trapezoid
-                let result = parseFloat(a) + parseFloat(b) / 2;
-                result *= h;
+                let x =(parseFloat(b1) + parseFloat(b2)) / 2;
+                const result = x * h;
+                console.log(result)
                 document.getElementById('Area').innerHTML = result;
             }
 
         function volume() {
-                let a = document.getElementById('a').value;
-                let b = document.getElementById('b').value;
-                let c = document.getElementById('c').value;
-                let d = document.getElementById('d').value;
+                let a = document.getElementById('aVolume').value;
+                let b = document.getElementById('bVolume').value;
+                let h = document.getElementById('hVolume').value;
+                let l = document.getElementById('lVolume').value;
                 // TODO: Addition operation
-                result = parseFloat(a) + parseFloat(b) + parseFloat(c) + parseFloat(d);
-                document.getElementById('Perimeter').innerHTML = result;
+                const result = [1/2 * [parseFloat(a) + parseFloat(b)]] * (parseFloat(h)* parseFloat(l) );
+                console.log(result)
+                document.getElementById('Volume').innerHTML = result;
             }
 
 
