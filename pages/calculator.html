@@ -28,44 +28,45 @@
 </header>
 
 
+    <section id="example">
+    <h2 style="text-align: center;">
+        Trapezoid Example
+    </h2>
+    <img class="calcIMG" id="trapExample" src="../images/trapezoidBridge.jpg" alt="Bridge example of trapezoid." width="300" height="200">
+    </section>
+<br><br><hr><br><br>
+
+
 <section id="instructions">
 <p>
-    Limitations: Please enter numbers only. This is only a basic calculator.<br>
+    Limitations: Please enter numbers only. This is a basic calculator.<br>
     Thank you for your cooperation.
 </p>
-
-
 </section>
 
 
-
-    <section id="example">
-    <h2 style="text-align: left;">
-        Trapezoid Example
-    </h2>
-    <img id="trapExample" src="../images/" alt="Bridge example of trapezoid.">
-    </section>
-
     <section id="2D">
-    <h3>2D Perimeter (Addition Operator Calculator)</h3>
+    <h3>2D Perimeter Calculator</h3>
+    <img class="calcIMG" src="../images/trapPerimeter.jpg" alt="Image of 2D trapezoid, illustrating how to calculate the perimeter.">
     <p>
         Perimeter = a + b + c + d 
     </p>
-
     <p><label for='a1'>a1</label><input type='text' id='a1Perimeter'></p>
     <p><label for='b1'>b1</label><input type='text' id='b1Perimeter'></p>
     <p><label for='a2'>a2</label><input type='text' id='a2Perimeter'></p>
     <p><label for='b2'>b2</label><input type='text' id='b2Perimeter'></p>	
     <button onclick='perimeter()'>Perimeter</button>
     <p>Result: <span id='Perimeter'></span></p>
+    <br><br><hr><br><br>
+
 
     <h3>
-    2D Area (Division Operator Calculator)
+    2D Area Calculator
     </h3>
+    <img class="calcIMG" src="../images/trapArea.jpg" alt="Image of 2D trapezoid, illustrating how to calculate the area.">
     <p>
         Area = h*[(b1 + b2) / 2]
     </p>
-
     <p><label for='h'>height</label><input type='text' id='hArea'></p>
     <p><label for='b1'>b1</label><input type='text' id='b1Area'></p>
     <p><label for='b2'>b2</label><input type='text' id='b2Area'></p>	
@@ -77,16 +78,17 @@
 
     <section id="3D">
         <h3>
-            3D Volume ( )
+            3D Volume Calculator
         </h3>
+        <img id="mikesBridge" src="../images/trapVolume.jpeg" alt="Image of 3D trapezoid, illuustrating how to calculate the volume.">
         <p>
             Volume = 1/2 (a + b) h * l
         </p>
-    <p><label for='a'>a</label><input type='text' id='aVolume'></p>
-    <p><label for='b'>b</label><input type='text' id='bVolume'></p>
+    <p><label for='b1'>b1</label><input type='text' id='b1Volume'></p>
+    <p><label for='b2'>b2</label><input type='text' id='b2Volume'></p>
     <p><label for='h'>height</label><input type='text' id='hVolume'></p>
     <p><label for='l'>length</label><input type='text' id='lVolume'></p>	
-    <button onclick='volume()'>/</button>
+    <button onclick='volume()'>Volume</button>
     <p>Result: <span id='Volume'></span></p>
     <br><br><hr><br><br>
     </section>
@@ -117,8 +119,8 @@
             }
 
         function volume() {
-                let a = document.getElementById('aVolume').value;
-                let b = document.getElementById('bVolume').value;
+                let a = document.getElementById('b1Volume').value;
+                let b = document.getElementById('b2Volume').value;
                 let h = document.getElementById('hVolume').value;
                 let l = document.getElementById('lVolume').value;
                 // TODO: Addition operation
@@ -126,9 +128,6 @@
                 console.log(result)
                 document.getElementById('Volume').innerHTML = result;
             }
-
-
-
 
     </script>
 
