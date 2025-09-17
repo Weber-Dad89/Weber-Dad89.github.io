@@ -59,3 +59,63 @@ footer {
 	font-weight: 2;
 	text-align: center;
 }
+
+#java, #settings_lists {
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+#aboutme {
+  width: 80%;
+  margin-left: 20%;
+  margin-right: auto;
+  margin-bottom: 15%;
+  text-align: auto;
+  font-size: 40pt;
+}
+
+#CS1 {
+        float: right;
+        margin-left: 15px; /* Add some space between image and text */
+    }
+
+#lineBrk1 {
+	color: black;
+	padding: 10;
+	border: color(srgb rgba(255, 0, 0, 0.799) rgba(0, 128, 0, 0.718) rgb(255, 255, 255));
+	border-radius: 5px;
+  	border-top: 3px solid #0074D9;
+}
+
+
+hr.gradient {
+  border: none;
+  height: 5px;
+  background: linear-gradient(to right, #f06, transparent);
+}
+
+.calcIMG {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 400px; 
+	height: 300px;
+}
+
+#instructions {
+	color: red;
+	size: 8pt;
+	border: white;
+	padding: 3px;
+	border-radius: 3;
+	text-align: center;
+}
+
+#mikesBridge {
+	display: block;
+	margin: auto;
+	height: 500px;
+	width: 500px;
+}
