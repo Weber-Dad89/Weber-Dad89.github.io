@@ -1,0 +1,17 @@
+let xTurn = true;
+
+function changeMark(buttonID) {
+    let currentMark = document.getElementById(buttonID).innerHTML;
+        }
+
+    if (!currentMark) {
+        if (xTurn) {
+            document.getElementById(buttonID).innerHTML = 'X';
+    }
+    else {
+        document.getElementById(buttonID).innerHTML = 'O';
+    }
+    xTurn = !xTurn
+    checkWin();
+
+}
