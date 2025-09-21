@@ -3,6 +3,8 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/styles/fonts.css"/> <!-- Relationship to internal Stylesheet-->
+    <link rel="stylesheet" href="/styles/gameStyles"/> <!-- Relationship to internal Stylesheet-->
     <title>Tic-Tac-Toe</title>
 
     <header>
@@ -21,7 +23,6 @@
 
         .coinRow {
             display: inline-flex;
-            justify-content:stretch;
             gap: 4px;
             width: 100px;
             height: 100px;
@@ -53,8 +54,7 @@
 
         <figure class="coinRow">
         <button id="playerButton"  onclick="playerToggle()" alt="Player Flip Button"></button>
-        <button  id="randomButton"  onclick="randomToggle()" alt="Random Flip Button"></button>
-        <button id="Mike" img src="/images/randomIcon.png" onclick="playerToggle"></button>
+        <button  id="randomButton" onclick="randomToggle()" alt="Random Flip Button"></button>
         <span id="playerFlip" ></span>
         <span id="randomFlip" ></span>
         <p id="message"></p>
@@ -62,12 +62,15 @@
     </p>
         
         <script>
-            const PLAYER = "&#x1FA99;";
-            const RANDOM = "&#x26AB;";
-            const MIKE = "/images/randomIcon.png";
+            const HEADS = "&#x1FA99;";
+            const TAILS = "&#x26AB;";
+            let PLAYER = "&#x1FA99;";
+            let RANDOM = "<img src=/images/randomIcon.png alt='Random Icon'>";
+            let p1 = "X"
+            let p2 = "O"
+
             document.getElementById('playerButton').innerHTML = PLAYER;
             document.getElementById('randomButton').innerHTML = RANDOM;
-            document.getElementById('Mike').innerHTML = MIKE;
 
             let playerChoice = 0;
             let randomChoice = 0;
@@ -76,26 +79,33 @@
             clearFlips();
             playerChoice = Math.abs(playerChoice - 1);
             // TODO: Ternary operation to update choice
-            document.getElementById('playerButton').innerHTML = (playerChoice ===0) ? PLAYER : RANDOM;
-            (playerChoice === 0) ? PLAYER : RANDOM;
+            document.getElementById('playerButton').innerHTML = (playerChoice === 0) ? HEADS : TAILS;
+            (playerChoice === 0) ? p1 : p2;
+            // 
+            message = "Heads means X goes first. ";
             }
 
             function randomToggle() {
             clearFlips();
-            randomChoice = Math.abs(randomChoice - 1);
+            randomChoice = parseInt(Math.abs(Math.random(randomChoice -1) * 100))
+            //randomChoice = Math.abs(randomChoice - 1);
             // TODO: Ternary operation to update choice
-            document.getElementById('randomButton').innerHTML = (randomChoice ===0) ? PLAYER : RANDOM;
-            (randomChoice === 0) ? PLAYER : RANDOM;
+            document.getElementById('randomButton').innerHTML = (randomChoice ===0) ? HEADS : TAILS;
+            (randomChoice === 0) ? p1 : p2;
             }
+
+            let message = "";
         </script>
 
+
+    <!-- TIC TAC TOE TABLE -->
     <table>
-        <tr>
+        <tr> 
             <td><button id="a1" onclick="changeMark('a1')"></button></td>
             <td><button id="b1" onclick="changeMark('b1')"></button></td>
             <td><button id="c1" onclick="changeMark('c1')"></button></td>
         </tr>
-        <!--  TODO: Complete the tic-toe grid  -->
+
         <tr>
             <td><button id="a2" onclick="changeMark('a2')"></button></td>
             <td><button id="b2" onclick="changeMark('b2')"></button></td>
@@ -107,6 +117,7 @@
             <td><button id="b3" onclick="changeMark('b3')"></button></td>
             <td><button id="c3" onclick="changeMark('c3')"></button></td>
         </tr>
+
     </table>
     
 </body>

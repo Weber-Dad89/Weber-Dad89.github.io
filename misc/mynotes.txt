@@ -1,0 +1,18 @@
+Game Page CSS styling todo's
+- Set background color of page to non-default
+
+- Change color of X (diff from O and default page color using JS)
+
+- Change color of O (diff from X and default page color using JS)
+
+- Increase font size of X's and O's
+
+- Change Background size of TTT buttons
+
+- adjust size and color of reset buttons to differ from buttons of the game board.
+
+- add any other additional styline to the page where needed. 
+
+
+
+
