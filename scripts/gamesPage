@@ -13,5 +13,10 @@ function changeMark(buttonID) {
     }
     xTurn = !xTurn
     checkWin();
+}
 
+function clearFlips() {
+    document.getElementById('playerFlip').innerHTML = "";
+    document.getElementById('randomFlip').innerHTML = "";
+    document.getElementById('message').textContent = "";
 }

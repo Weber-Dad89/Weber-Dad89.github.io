@@ -14,14 +14,81 @@
     <script src="../scripts/button.js"></script>
     <script src="../scripts/gamesPage"></script>
     <style>
+
+        h1 {
+            text-align: center;
+        }
+
+        .coinRow {
+            display: inline-flex;
+            justify-content:stretch;
+            gap: 4px;
+            width: 100px;
+            height: 100px;
+        }
+
+        #message {
+            font-size: xx-large;
+        }
+
         button {
             width: 100px;
             height: 100px;
         }
+
+        p {
+            font-size: medium;
+            margin-right: 40%;
+        }
+
     </style>
 </head>
 <body id="gamePage">
     <h1>Tic-Tac-Toe</h1>
+    <p>Get three in a row of your character, either vertically or horizontally to win the game! Each player will alternate turns selecting a box with their character. May the best player win.
+
+        <h4 style="text-align: center; display: inline;">Who Goes First?</h4><br>
+            Flip the coin to see who goes first. If the coin lands on Heads, then 'X' goes first, if the coin lands on Tails, 
+            then 'Y' goes first. Let's begin, Flip the coin. <br>
+
+        <figure class="coinRow">
+        <button id="playerButton"  onclick="playerToggle()" alt="Player Flip Button"></button>
+        <button  id="randomButton"  onclick="randomToggle()" alt="Random Flip Button"></button>
+        <button id="Mike" img src="/images/randomIcon.png" onclick="playerToggle"></button>
+        <span id="playerFlip" ></span>
+        <span id="randomFlip" ></span>
+        <p id="message"></p>
+        </figure>
+    </p>
+        
+        <script>
+            const PLAYER = "&#x1FA99;";
+            const RANDOM = "&#x26AB;";
+            const MIKE = "/images/randomIcon.png";
+            document.getElementById('playerButton').innerHTML = PLAYER;
+            document.getElementById('randomButton').innerHTML = RANDOM;
+            document.getElementById('Mike').innerHTML = MIKE;
+
+            let playerChoice = 0;
+            let randomChoice = 0;
+
+            function playerToggle() {
+            clearFlips();
+            playerChoice = Math.abs(playerChoice - 1);
+            // TODO: Ternary operation to update choice
+            document.getElementById('playerButton').innerHTML = (playerChoice ===0) ? PLAYER : RANDOM;
+            (playerChoice === 0) ? PLAYER : RANDOM;
+            }
+
+            function randomToggle() {
+            clearFlips();
+            randomChoice = Math.abs(randomChoice - 1);
+            // TODO: Ternary operation to update choice
+            document.getElementById('randomButton').innerHTML = (randomChoice ===0) ? PLAYER : RANDOM;
+            (randomChoice === 0) ? PLAYER : RANDOM;
+            }
+        </script>
+
     <table>
         <tr>
             <td><button id="a1" onclick="changeMark('a1')"></button></td>
