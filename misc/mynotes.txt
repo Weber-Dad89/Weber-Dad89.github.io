@@ -5,11 +5,11 @@ Game Page CSS styling todo's
 
 - Change color of O (diff from X and default page color using JS) (done)
 
-- Increase font size of X's and O's
+- Increase font size of X's and O's (done)
 
-- Change Background size of TTT buttons
+- Change Background size of TTT buttons (done)
 
-- adjust size and color of reset buttons to differ from buttons of the game board.
+- adjust size and color of reset buttons to differ from buttons of the game board. (done)
 
 - add any other additional styline to the page where needed. 
 

@@ -1,20 +1,37 @@
 body {
-	background-color: lightblue;
-	color: rgb(0,50,0);
+	background-color: white;
+	color: black(0,50,0);
 }
+.SageText { 
+	font-size: 12px;
+	letter-spacing: 2pt;
+	color: black;	
+	font-family: 'Orbitron';
+	float: auto;
+	margin: right;
+	}
 
-#gamePage {
+#javaScriptGames {
     color: black;
-	font-size: x-large;
+	font-size: xx-large;
     background-image: url("/images/tTTGridBackground.jpg");
-	background-size: 25%;
+	background-size: 20%;
 	background-repeat: repeat;
-	background-position: center;
+	background-position: auto;
 }
 
+.gameDescription {
+	text-align: center;
+	color: rgb(87, 1, 173);
+}
 
-.game-H1 {
+.gameH1 {
+	color: white;
+}
+
+.gameH2 {
 	color: black;
+	text-align: center;
 }
 
 header {
@@ -57,15 +74,6 @@ h1 {
 	font-size: 12px;
 	color: olivedrab;
 	} 
-
-
-.SageText { 
-	font-size: 12px;
-	letter-spacing: 2pt;
-	color: whitesmoke;	
-	font-family: OrbitronLight;
-	text-align: center;
-	}
 
 footer {
 	color: black;

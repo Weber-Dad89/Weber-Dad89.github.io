@@ -21,7 +21,7 @@ function Loveless() {
 function This() {
     document.getElementById('demobtn').innterHTML="Ç$"; // this changes the button text from "" to Ç$ my signature
     document.getElementById('demo').innterHTML="Lorem ipsum dolor sit amet consectetur adipiscing elit. Sit amet consect"
-    "etur adipiscing elit quisque faucibus ex. Adipiscing elit quisque faucibus ex sapien vitae pellentesque."
+    "etur adipiscing elit quisque faucibus ex. Adipiscing elit quisque faucibus ex sapien vitae pellentesque.";
 }
 
 
