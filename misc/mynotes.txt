@@ -1,9 +1,9 @@
 Game Page CSS styling todo's
-- Set background color of page to non-default
+- Set background color of page to non-default (done)
 
-- Change color of X (diff from O and default page color using JS)
+- Change color of X (diff from O and default page color using JS) (done)
 
-- Change color of O (diff from X and default page color using JS)
+- Change color of O (diff from X and default page color using JS) (done)
 
 - Increase font size of X's and O's
 

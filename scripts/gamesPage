@@ -4,36 +4,25 @@ function changeMark(buttonID) {
     let currentMark = document.getElementById(buttonID).innerHTML;
 
     if ( !currentMark) {
-        if (xTurn) {
+    if (xTurn) {
             document.getElementById(buttonID).innerHTML = 'X';
             // TODO: Set X Color
-            document.getElementById(currentMark).style = 'text-color: green;';
+            if (xTurn) {
+            document.getElementById(buttonID).setAttribute("style", "color: green");
+        }
     }
     else {
         document.getElementById(buttonID).innerHTML = 'O';
+        if (!xTurn) {
         // TODO Set O color
-        document.getElementById(currentMark).style= 'text-color: blue;';
+        document.getElementById(buttonID).setAttribute("style", "color: white;");
+        }
     }
 
     xTurn = !xTurn;
     checkWin();
     }
 }
-
-function clearFlips() {
-    document.getElementById('playerFlip').innerHTML = "";
-    document.getElementById('randomFlip').innerHTML = "";
-    document.getElementById('message').textContent = "";
-}
-
-    if (randomChoice === 0) {
-        xTurn = false;
-        message = "O goes first!"
-    }
-    else {
-        xTurn = true;
-        message = "X goes first!"
-    }
 
 function resetGame() {
     message = "Ressetting Game..."
@@ -55,7 +44,7 @@ function checkWin() {
     let a1 = document.getElementById("a1").innerHTML;
     let b1 = document.getElementById("b1").innerHTML;
     let c1 = document.getElementById("c1").innerHTML;
-    // TODO: Retrieve the marks from the remaining buttons
+
     let a2 = document.getElementById("a2").innerHTML;
     let b2 = document.getElementById("b2").innerHTML;
     let c2 = document.getElementById("c2").innerHTML;
@@ -68,18 +57,39 @@ function checkWin() {
         // TODO: Inform the player that X wins on the page
         message = "X wins the game!";
     }
-    else {
-        if (b1 == b2 && b2 == b3 && b1 == "X") {
-            message = "X wins the game!"; 
-        }
-    else {
-        if (c1 == c2 && c2 == c3 && c1 == "X") {
-            message = "X wins the game!";
-        }
+    else if (b1 == b2 && b2 == b3 && b1 == "X") {
+        message = "X wins the game!"; 
     }
+    else if (c1 == c2 && c2 == c3 && c1 == "X") {
+        message = "X wins the game!";
     }
+    else if (a1 == a2 && a2 == a3 == "X" ) {
+        message = "X wins the game!";
+    }
+    else if (c1 == c2 && c3 == c3 && "X" ) {
+        message = "X wins the game!";
+    }
+
+    if (a1 == b1 && b1 == c1 && a1 == "O") {
+        // TODO: Inform the player that X wins on the page
+        message = "O wins the game!";
+    }
+    else if (b1 == b2 && b2 == b3 && b1 == "O") {
+        message = "O wins the game!"; 
+    }
+    else if (c1 == c2 && c2 == c3 && c1 == "O") {
+        message = "O wins the game!";
+    }
+    else if (a1 == a2 && a2 == a3 == "O" ) {
+        message = "O wins the game!";
+    }
+    else if (c1 == c2 && c3 == c3 && "O" ) {
+        message = "O wins the game!";
+    }
+        else {
+            message = " It's a tie, no winner.";
+        }
+
     // TODO: Complete the logic for the remaining win possibilities
-
     document.getElementById('message').innerHTML = message;
-
 }

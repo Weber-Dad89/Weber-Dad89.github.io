@@ -3,6 +3,20 @@ body {
 	color: rgb(0,50,0);
 }
 
+#gamePage {
+    color: black;
+	font-size: x-large;
+    background-image: url("/images/tTTGridBackground.jpg");
+	background-size: 25%;
+	background-repeat: repeat;
+	background-position: center;
+}
+
+
+.game-H1 {
+	color: black;
+}
+
 header {
 	background-color: rebeccapurple;
 	font-family: 'Electrolize Regular', 'OrbitronMedium', 'Space Mono';
@@ -119,5 +133,3 @@ hr.gradient {
 	height: 500px;
 	width: 500px;
 }
-
-

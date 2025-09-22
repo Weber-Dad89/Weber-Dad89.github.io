@@ -3,8 +3,8 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/styles/fonts.css"/> <!-- Relationship to internal Stylesheet-->
-    <link rel="stylesheet" href="/styles/gameStyles"/> <!-- Relationship to internal Stylesheet-->
+    <link rel="font stylesheet" href="/styles/fonts.css"/> <!-- Relationship to internal font Stylesheet-->
+    <link rel="stylesheet" href="/styles/styles.css"/> <!-- Relationship to internal Stylesheet-->
     <title>Tic-Tac-Toe</title>
 
     <header>
@@ -21,85 +21,42 @@
             text-align: center;
         }
 
-        .coinRow {
-            display: inline-flex;
-            gap: 4px;
-            width: 100px;
-            height: 100px;
-        }
-
         #message {
             font-size: xx-large;
         }
 
         button {
+            width: 200px;
+            height: 200px;
+            font-size: xx-large;
+            background-color: blueviolet;
+        }
+
+        #resetButton {
+            color: yellow;
+            border-radius: white;
+            border-style: solid;
+            background-color: black;
             width: 100px;
-            height: 100px;
+            height: 20px;
         }
 
         p {
-            font-size: medium;
+            font-size: xx-large;
             margin-right: 40%;
         }
 
     </style>
 </head>
 <body id="gamePage">
-    <h1>Tic-Tac-Toe</h1>
+    <h1 class="game-H1">Tic-Tac-Toe</h1>
     <p>Get three in a row of your character, either vertically or horizontally to win the game! Each player will alternate turns selecting a box with their character. May the best player win.
 
-        <h4 style="text-align: center; display: inline;">Who Goes First?</h4><br>
-            Flip the coin to see who goes first. If the coin lands on Heads, then 'X' goes first, if the coin lands on Tails, 
-            then 'Y' goes first. Let's begin, Flip the coin. <br>
 
-        <figure class="coinRow">
-        <button id="playerButton"  onclick="playerToggle()" alt="Player Flip Button"></button>
-        <button  id="randomButton" onclick="randomToggle()" alt="Random Flip Button"></button>
-        <span id="playerFlip" ></span>
-        <span id="randomFlip" ></span>
-        <p id="message"></p>
-        </figure>
-    </p>
-        
-        <script>
-            const HEADS = "&#x1FA99;";
-            const TAILS = "&#x26AB;";
-            let PLAYER = "&#x1FA99;";
-            let RANDOM = "<img src=/images/randomIcon.png alt='Random Icon'>";
-            let p1 = "X"
-            let p2 = "O"
-
-            document.getElementById('playerButton').innerHTML = PLAYER;
-            document.getElementById('randomButton').innerHTML = RANDOM;
-
-            let playerChoice = 0;
-            let randomChoice = 0;
-
-            function playerToggle() {
-            clearFlips();
-            playerChoice = Math.abs(playerChoice - 1);
-            // TODO: Ternary operation to update choice
-            document.getElementById('playerButton').innerHTML = (playerChoice === 0) ? HEADS : TAILS;
-            (playerChoice === 0) ? p1 : p2;
-            // 
-            message = "Heads means X goes first. ";
-            }
-
-            function randomToggle() {
-            clearFlips();
-            randomChoice = parseInt(Math.abs(Math.random(randomChoice -1) * 100))
-            //randomChoice = Math.abs(randomChoice - 1);
-            // TODO: Ternary operation to update choice
-            document.getElementById('randomButton').innerHTML = (randomChoice ===0) ? HEADS : TAILS;
-            (randomChoice === 0) ? p1 : p2;
-            }
-
-            let message = "";
-        </script>
 
 
     <!-- TIC TAC TOE TABLE -->
-    <table>
+    <table >
         <tr> 
             <td><button id="a1" onclick="changeMark('a1')"></button></td>
             <td><button id="b1" onclick="changeMark('b1')"></button></td>
@@ -119,6 +76,8 @@
         </tr>
 
     </table>
-    
+    <p id ="message"></p>
+
+    <button id="resetButton" onclick="resetGame()">Reset Game</button>
 </body>
 </html>
