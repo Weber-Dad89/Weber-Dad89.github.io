@@ -1,10 +1,10 @@
 body {
 	background-color: white;
-	color: black(0,50,0);
+	color: rgb(0,50,0);
 }
 .SageText { 
-	font-size: 12px;
-	letter-spacing: 2pt;
+	font-size: 20px;
+	letter-spacing: 6pt;
 	color: black;	
 	font-family: 'Orbitron';
 	float: auto;
@@ -12,6 +12,7 @@ body {
 	}
 
 #javaScriptGames {
+	font-family: 'Electrolize';
     color: black;
 	font-size: xx-large;
     background-image: url("/images/tTTGridBackground.jpg");

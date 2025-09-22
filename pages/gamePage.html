@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <link rel="font stylesheet" href="/styles/fonts.css"/> <!-- Relationship to internal font Stylesheet-->
     <link rel="stylesheet" href="/styles/styles.css"/> <!-- Relationship to internal Stylesheet-->
-    <title>Tic-Tac-Toe</title>
+    <title>Game Page</title>
 
     <header>
     <nav>
@@ -16,7 +16,6 @@
     <script src="../scripts/button.js"></script>
     <script src="../scripts/gamesPage"></script>
     <style>
-
         h1 {
             text-align: center;
         }
@@ -36,8 +35,8 @@
             color: yellow;
             font-size: small;
             border-radius: white;
-            
             border-style: solid;
+            border: 18px;
             background-color: black;
             width: 100px;
             height: 20px;
@@ -52,7 +51,7 @@
 </head>
 <body id="javaScriptGames">
 
-    <h2 class="gameH2">Tic-Tac-Toe</h1>
+    <h2 class="Orbitron-Header">Tic-Tac-Toe</h2>
     <p class="gameDescription">Get three in a row of your character, either vertically or horizontally to win the game! Each player will alternate turns selecting a box with their character.<br>
     <strong>May the best player win.</strong>
     </div>
@@ -78,6 +77,7 @@
         </tr>
 
     </table>
+    <label>Current Player: <span id="currentPlayer" background-color="black" width="100px" height="50px"></span></label>
     <p id ="message"></p>
 
     <button id="resetButton" onclick="resetGame()">Reset Game</button>
