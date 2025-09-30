@@ -1,17 +1,20 @@
-Game Page CSS styling todo's
-- Set background color of page to non-default (done)
+Mean Calculator Page 
+- create link to calculator page from main page (portfolio site)
 
-- Change color of X (diff from O and default page color using JS) (done)
+- input field and buttons are properly implemented (functionality)
 
-- Change color of O (diff from X and default page color using JS) (done)
+- Numbers can be added and removed to and from the datasets successfully (arrays)
 
-- Increase font size of X's and O's (done)
+- Ensure datasets update dynamically on the page as numbers are added and removed (JS functionality)
 
-- Change Background size of TTT buttons (done)
+- Add input validation to handle cases when a number is not found (removal)
 
-- adjust size and color of reset buttons to differ from buttons of the game board. (done)
+- Use a for loop to sum dataset values and division by dataset length (length of array) to correctly
+    compute the mean. No library functions were used.
 
-- add any other additional styline to the page where needed. 
+- Display the mean on the page
+
+- add any other additional styline to the page where needed. (optional)
 
 
 
