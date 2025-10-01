@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // what is an array?
+        // collection of items under one identifier (in JS may be mixed types)
+
+        let fav_nums = [ 27, 42, 4221,  9, 1, 77] ;
+        console.log(fav_nums);
+
+        let fav_book = [ "Frankenstein's Cool", "Mary, Shelly", 27.99, 1992 ]; 
+        console.log(fav_book);
+
+        fav_book[0] = "Tiger's Curse" // Reassigns element at index 0 with new data
+        console.log(fav_book);
+        
+        // Array Basics:
+        console.log(fav_book[1]);
+
+        // Arrays in JS have a bunch of prebuilt methods
+        students = ["Tanner", "Mike", "Eric", "John"];
+
+        // Adding to ARRAY
+        students.push("Kylie") // .push adds element to end of the array
+        students.unshift("Bhumika");
+        console.log(students)
+
+        // Remove from array
+        // students.pop();     // Remove from the end
+        // students.shift();      // Remove from the front
+
+        // Need to know what is in the array
+        let index = students.indexOf("KJ");
+        console.log(index);
+
+        let inArray = students.includes("Mike");
+        console.log(inArray);
+
+        // Array Manipulation
+        // slice: return a partial array (shallow copy)
+
+        // Shallow copy of the entire array
+        let studentsShallowCopy = students.slice();
+        //console.log(studentsShallowCopy);
+
+        // Shallow copy of partial array beginning at argument
+        let studentsLastHalf = students.slice(3);
+        //console.log(studentsLastHalf);
+
+        // shallow copy of partial array beginning at arg1 and ending at arg2
+        let studentsMiddle = students.slice(3,5);
+        //console.log(studentsMiddle);
+
+
+        console.log(students)
+        // splice used for Array modification (add, remove and replace)
+        // splice(start_index, number_to_remove, optional_replacements (* number to remove is the quantitity of items to remove not the index!!)
+
+        students.splice(2, 0, "Jarron"); // Add new item at index 2
+
+        let lostSouls= students.splice(3, 2); // Removes element from array after "Jarron"
+        console.log(lostSouls) // displays the array of elements that were spliced from the original students array
+
+        // Replace
+        students.splice(1, 1, "Nischal"); // Starts at the specified index, and then replaces the element at the index with the new data
+
+        console.log(students);
+
+        // Creates a string representation of the array
+        let studentString= students.join(" , ");
+        // console.log(studentString);
+
+
+        // Combine two arrays with concat
+        let newStudents= ["Samyukta", "Alia", "Brady"];
+        let combined= students.concat(newStudents);
+        console.log(combined);
+
+        // Iterating through arrays:
+        // Traditional for loop: (benefits of this are for knowing both the value and the index of your array)
+        for (let i=0; i < combined.length; i++) {
+            console.log(combined[i] + " is at index " + i);
+        }
+
+        // for in (iterates through indexes)
+        for ( let index in combined) {
+            console.log(index);
+
+        }
+
+        // for of (values)
+        for (let value of combined) {
+            console.log(value);
+        }
+
+        // forEach()
+        
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

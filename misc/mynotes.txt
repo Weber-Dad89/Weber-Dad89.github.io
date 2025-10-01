@@ -1,5 +1,5 @@
 Mean Calculator Page 
-- create link to calculator page from main page (portfolio site)
+- create link to calculator page from main page (portfolio site) - DONE
 
 - input field and buttons are properly implemented (functionality)
 

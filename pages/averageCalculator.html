@@ -4,10 +4,114 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arithmetic Mean Calculator</title>
+        <style>
+        h1 {
+            text-align: center;
+            color: rgb(87, 1, 173);
+        }
+
+        #message {
+            font-size: xx-large;
+        }
+
+        button {
+            display: inline-flex;
+            width: 50px;
+            height: 25px;
+            font-size: 8px;
+            color: white;
+            background-color: black;
+            text-align: center;
+        }
+
+        #calcMean {
+            width: 60px;
+            height: 60px;
+            background-color: white;
+            color: black;
+            font-size: 9px;
+            text-align: center;
+        }
+
+        p {
+            font-size: medium;
+            margin-right: 0%;
+        }
+
+    </style>
 </head>
+<header>
+<h1>Arithmetic Mean Calculator Page</h1>
+</header>
+
 <body id="averageCalculatorPage">
 
-<p><label for='user1'>Enter a number: </label><input type='text' id='inputField1'></p>
+
+<h2>Data Entry</h2>
+<p><label for='user1'>Enter some values: </label><input type='text' id='inputField1'></p>
+<button onclick='addValue()'>Add Value</button>
+<button onclick="removeValue()">Remove Value</button>
+
+<h2>Current Dataset</h2>
+<p id="currentData">current data will dynamically change with JS.</p>
+
+<h2>Arithmetic Mean</h2>
+<label>Current mean: <span id="currentMean" background-color="black" width="150px" height="75px"></span>I am the meanest.</label>
+<p id ="message"></p>
+<button id="calcMean" onclick="calcMean()">Click Here To Calculate The Mean!</button>
+
+
+<script> // Time for some Javascript //
+let currentData =['Welcome Friend', 'Enter More Values!'];
+console.log(currentData);
+let text;
+
+
+// TODO Create addValue() function
+function addValue() {
+    let userVal = document.getElementById('inputField1').value;
+    // if user enters nothing and tries to add a value
+    if (userVal == "") {
+        alert("Please enter a numerical value.");
+        return false;    
+        }
+    else {
+        currentData.push(userVal);
+        document.getElementById('currentData').innerHTML =currentData;
+        document.getElementById('message').innerHTML = "Valid Entry!";
+        return userVal;
+        }
+    console.log(userVal);
+    }
+
+
+// TODO Create removeValue() function
+function removeValue() {
+    let userVal = document.getElementById('inputField1').value;
+    if (userVal ) {
+        text = "Sorry that value does not exist.";
+    } else {
+        text = "Removing that value.";
+        currentData.unshift(userVal);
+        document.getElementById('currentData').innerHTML =currentData;
+        }
+    console.log(userVal);
+    }
+
+// TODO Create JavaScript function to compute the arithmetic mean from the existing data set
+
+        // Use a for loop to iterate through the dataset, summing all values
+        // Divide the total by the number of values in the dataset
+        // Display the mean on the page (Can either be activated or dynamically updated when values are either added or removed)
+                // Provide an additional button on the page to ("compute mean")
+                // Computing the mean concurrently with data entry. After vaue is added or removed
+
+
+/* NOTE: You must use a loop to compute the aritmetic mean. Do not use existing libraries or functions. Doing so will result in a 0 for this part of the assignment.  */
+
+
+</script>
+
 
 </body>
 </html>
