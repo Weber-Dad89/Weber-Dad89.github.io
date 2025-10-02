@@ -130,6 +130,9 @@ function calcMean() {
         sumOfArray += currentData[i]; // adds the current element to the sum
     }
     let arithmeticMean = sumOfArray / lengthOfArray; // divides the current sum by the current length
+    if (isNaN(arithmeticMean)) { // if mean is not a number
+        alert("Please don't do that. Enter at least one value and then click the button.")
+    }
     document.getElementById('currentMean').innerHTML = arithmeticMean + " The number of total values is: " + lengthOfArray // Display the mean on the page (activated by button) 
     console.log(sumOfArray);
     console.log(lengthOfArray);
