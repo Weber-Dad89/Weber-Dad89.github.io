@@ -1,18 +1,18 @@
 Mean Calculator Page 
 - create link to calculator page from main page (portfolio site) - DONE
 
-- input field and buttons are properly implemented (functionality)
+- input field and buttons are properly implemented (functionality) (Done)
 
-- Numbers can be added and removed to and from the datasets successfully (arrays)
+- Numbers can be added and removed to and from the datasets successfully (arrays) (Done)
 
-- Ensure datasets update dynamically on the page as numbers are added and removed (JS functionality)
+- Ensure datasets update dynamically on the page as numbers are added and removed (JS functionality) (Done)
 
-- Add input validation to handle cases when a number is not found (removal)
+- Add input validation to handle cases when a number is not found (removal) (Done)
 
 - Use a for loop to sum dataset values and division by dataset length (length of array) to correctly
-    compute the mean. No library functions were used.
+    compute the mean. No library functions were used. (Done)
 
-- Display the mean on the page
+- Display the mean on the page (Done)
 
 - add any other additional styline to the page where needed. (optional)
 

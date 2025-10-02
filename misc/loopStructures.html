@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<head lang="en-US">
+	<meta charset="UTF-8">
+		<title>Dice and Card Tester</title>
+		
+		<style>
+			.dice {
+				font-size: xxx-large;
+			}
+			
+			.card {
+				font-size: 100px;
+			}
+		</style>
+		
+		<script>
+
+			// Simple loop notes
+
+			// What is a loop? Repeated code
+
+			// Writing DRY (don't repeat yourself) code
+			// Five 'types' of loops (while, for, do-while)
+			// while - the number of iterations is unknown AND it may not run at all
+			// do while - the number of iterations is unknown AND it will run at least once
+			// for (traditional) - the number of iterations is known
+			// for of - used to iterate over the values of an iterable (array, )
+			// for in  used to iterate ver the properties of an object
+
+			// Demo #1: while
+			// Bare minimum requirements: variable, expression on variable, update variable
+
+			/* let number = prompt('How how should I count? (Leave it blank to skip.)');
+			let current = 0;
+			while (current < number)
+				alert(++current); */
+
+
+			// Demo #2: do while
+			/*let response;
+			do {
+				response = confirm("Click 'OK' to confuse a non-CS major");
+			} while (response); */
+
+			// Demo # 3: for loops
+
+			// combines all the minimum requirements of a loop into a single statement
+			// for (variable init; expression; variable update) {code to repeat}
+			// count to 3 (iterations is known)
+			/*for (let i = 0; i <=2; i++)
+				alert(i + 1); */
+			
+			// while demo
+			function verifyAge() {				
+				// TODO: Verify age with while loop
+				let age = prompt('You must be 21 years old to enter. \nWhat is your age? ');
+
+				while (age < 21) {
+					age = prompt('You are too young. \nWhat is your age?')
+				}
+			}
+		
+			// do-while demo
+			function diceRoll() {
+				// TODO: Roll dice with do-while loop
+				// TODO: Account for bad input with break
+
+				let count = 0;
+				let outcome = parseInt(document.getElementById('diceOutcome').value);
+
+				let d1, d2;
+				let output = '<p>';
+				
+				do {
+					d1 = parseInt(Math.random() * 6) + 1;
+					d2 = parseInt(Math.random() * 6) + 1;
+
+					output += 'd1: ' + d1;
+					output += ' d2: ' + d2;
+					output += ' count : ' + (++count) + '<br>';
+
+					if (count > 100)
+						break;
+
+				} while (d1 + d2 != outcome);
+
+				document.getElementById('diceOutput').innerHTML = output + '</p>';	
+			}
+			
+			// Spades   (127137)
+			// Hearts   (127153)
+			// Diamonds (127169)
+			// Clubs    (127185)
+			
+			function revealCards() {
+				// TODO: Reveal cards with for loop
+				// TODO: Skip knight with continue
+
+				let output = '<p class="card">';
+				let offset = 0;
+				let start = 127137 + offset;
+
+				for (let i = start; i <= start + 13; i++) {
+					if (i == start + 11)
+						continue;
+					output += '&#' + i + ';' ;
+				}
+				document.getElementById('cardOutput').innerHTML = output + '</p>' ;
+			}		
+		</script>
+	</head>
+	<body>
+		<h1>Dice and Card Tester</h1>
+		<p>Please verify your age to continue.</p>
+		
+		<button onclick='verifyAge()' id='ageButton'>Verify Age</button>
+	
+		<hr>
+	
+		<h2>Dice Tester</h2>
+		<label for='diceOutcome'>Desired Outcome (2-12): </label>
+		<input type='text' id='diceOutcome'>
+				
+		<button onclick='diceRoll()' enabled id='diceButton'>Roll the Dice</button>
+		<div id='diceOutput'></div>
+		
+		<hr>
+		
+		<h2>Card Tester</h2>
+		<button onclick='revealCards()' enabled id='cardButton'>Reveal Cards</button>
+		<div id='cardOutput'></div>
+		
+		<hr>		
+	</body>
+</html>

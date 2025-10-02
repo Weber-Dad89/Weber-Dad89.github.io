@@ -48,63 +48,96 @@
 
 
 <h2>Data Entry</h2>
-<p><label for='user1'>Enter some values: </label><input type='text' id='inputField1'></p>
+<p><label for='user1'>Enter a number: </label><input type='text' id='inputField1'></p>
 <button onclick='addValue()'>Add Value</button>
 <button onclick="removeValue()">Remove Value</button>
 
 <h2>Current Dataset</h2>
-<p id="currentData">current data will dynamically change with JS.</p>
+<p id="currentData"></p>
+<p id="message"></p>
 
 <h2>Arithmetic Mean</h2>
-<label>Current mean: <span id="currentMean" background-color="black" width="150px" height="75px"></span>I am the meanest.</label>
-<p id ="message"></p>
+<label>Current mean: <span id="currentMean" background-color="black" width="150px" height="75px"></span>I am the meanest.</label><br><br>
 <button id="calcMean" onclick="calcMean()">Click Here To Calculate The Mean!</button>
 
 
 <script> // Time for some Javascript //
-let currentData =['Welcome Friend', 'Enter More Values!'];
+let currentData =[];
 console.log(currentData);
 let text;
 
 
 // TODO Create addValue() function
 function addValue() {
-    let userVal = document.getElementById('inputField1').value;
-    // if user enters nothing and tries to add a value
-    if (userVal == "") {
-        alert("Please enter a numerical value.");
-        return false;    
+    let inputField1 = document.getElementById('inputField1').value; // assigns var with user input as string
+    let userVal = parseFloat(inputField1); // converts user input to a number
+    console.log(inputField1);
+    if (userVal) {
+    currentData.push(userVal); // adds to array
+    text = "Add more, or click mean button to calculate."
+    document.getElementById('message').innerHTML = text;
+    document.getElementById('currentData').innerHTML =currentData; // displays updated dataset on page
+    }
+    if (userVal == "") {    // if user enters nothing and tries to add a value
+        alert("Please enter a numerical value.");  
         }
-    else {
-        currentData.push(userVal);
-        document.getElementById('currentData').innerHTML =currentData;
-        document.getElementById('message').innerHTML = "Valid Entry!";
-        return userVal;
-        }
+    if (isNaN(userVal)) { // if input is not a number
+        alert("That is not a number.")
     console.log(userVal);
     }
-
+}
 
 // TODO Create removeValue() function
 function removeValue() {
-    let userVal = document.getElementById('inputField1').value;
-    if (userVal ) {
-        text = "Sorry that value does not exist.";
-    } else {
-        text = "Removing that value.";
-        currentData.unshift(userVal);
-        document.getElementById('currentData').innerHTML =currentData;
+    let inputField1 = document.getElementById('inputField1').value; // assigns var with user input as string
+    let userVal = parseFloat(inputField1); // converts user input to a number
+    
+    let index = currentData.indexOf(userVal); // returns the first index of a given element, or -1 if not found
+    console.log(index);
+
+    let inArray = currentData.includes(userVal); // assigns True or False if value is found
+    console.log(inArray);
+
+    if (isNaN(userVal)) { // if input is not a number
+        alert("That is not a number.")
+    }
+    if (userVal) {
+        if (inArray) {
+        currentData.splice(index, 1); // Removes the element at the found index
+        document.getElementById('currentData').innerHTML =currentData; // displays updated dataset on page
+        text = userVal + ' was removed from the dataset.'; // Success message to the user
+        document.getElementById('message').innerHTML = text;
         }
+        else {
+        text = "Sorry that value does not exist."; // Error message to the user
+        document.getElementById('message').innerHTML = text;
+        }
+    }
     console.log(userVal);
+    console.log(index);
+    console.log(inArray);
+    console.log(currentData);
     }
 
 // TODO Create JavaScript function to compute the arithmetic mean from the existing data set
 
         // Use a for loop to iterate through the dataset, summing all values
-        // Divide the total by the number of values in the dataset
-        // Display the mean on the page (Can either be activated or dynamically updated when values are either added or removed)
-                // Provide an additional button on the page to ("compute mean")
-                // Computing the mean concurrently with data entry. After vaue is added or removed
+function calcMean() {
+    let sumOfArray=0;
+    let lengthOfArray = currentData.length; // gets length array
+
+    for (let i = 0; i < lengthOfArray; i++) { // iterates through each element in array to do math
+        sumOfArray += currentData[i]; // adds the current element to the sum
+    }
+    let arithmeticMean = sumOfArray / lengthOfArray; // divides the current sum by the current length
+    document.getElementById('currentMean').innerHTML = arithmeticMean + " The number of total values is: " + lengthOfArray // Display the mean on the page (activated by button) 
+    console.log(sumOfArray);
+    console.log(lengthOfArray);
+    console.log("The average is:", arithmeticMean); 
+}
+
+
+        
 
 
 /* NOTE: You must use a loop to compute the aritmetic mean. Do not use existing libraries or functions. Doing so will result in a 0 for this part of the assignment.  */
