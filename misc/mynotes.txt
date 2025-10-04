@@ -1,20 +1,30 @@
-Mean Calculator Page 
-- create link to calculator page from main page (portfolio site) - DONE
+Memory Match Game 
+- create link to Memory Match Game from main page (portfolio site) - N/A (Optional) 
 
-- input field and buttons are properly implemented (functionality) (Done)
+- loadMap function:
+    •   uses arrow notation
+    •   rows and cols with default params
+    •   1D array with shuffle
+    •   2D array with shuffled pairs
 
-- Numbers can be added and removed to and from the datasets successfully (arrays) (Done)
+- makeBoard function:
+    •   uses arrow notation
+    •   rows and cols with default params
 
-- Ensure datasets update dynamically on the page as numbers are added and removed (JS functionality) (Done)
+- resetBoard function:
+    •   uses arrow notation
 
-- Add input validation to handle cases when a number is not found (removal) (Done)
+- process function:
+    •   uses arrow notation
+    •   rows and cols with default params
+    •   Invokes checkMatch as callback with setTimout
 
-- Use a for loop to sum dataset values and division by dataset length (length of array) to correctly
-    compute the mean. No library functions were used. (Done)
+- checkMatch function:
+    •   Uses arrow notation
 
-- Display the mean on the page (Done)
+- The memory match game works correctly
 
-- add any other additional styline to the page where needed. (optional)
+
 
 
 
