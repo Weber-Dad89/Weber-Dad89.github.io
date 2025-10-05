@@ -2,14 +2,14 @@ Memory Match Game
 - create link to Memory Match Game from main page (portfolio site) - N/A (Optional) 
 
 - loadMap function:
-    •   uses arrow notation
-    •   rows and cols with default params
-    •   1D array with shuffle
-    •   2D array with shuffled pairs
+    •   uses arrow notation (done)
+    •   rows and cols with default params (done)
+    •   1D array with shuffle (done)
+    •   2D array with shuffled pairs 
 
 - makeBoard function:
     •   uses arrow notation
-    •   rows and cols with default params
+    •   rows and cols with default params (done)
 
 - resetBoard function:
     •   uses arrow notation
