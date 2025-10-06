@@ -1,5 +1,5 @@
 Memory Match Game 
-- create link to Memory Match Game from main page (portfolio site) - N/A (Optional) 
+- create link to Memory Match Game from main page (portfolio site) - N/A (Added) 
 
 - loadMap function:
     •   uses arrow notation (done)
@@ -22,7 +22,7 @@ Memory Match Game
 - checkMatch function:
     •   Uses arrow notation (done)
 
-- The memory match game works correctly (done)
+- The memory match game works correctly (Complete)
 
 
 
