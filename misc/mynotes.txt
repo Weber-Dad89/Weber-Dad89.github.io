@@ -5,14 +5,14 @@ Memory Match Game
     •   uses arrow notation (done)
     •   rows and cols with default params (done)
     •   1D array with shuffle (done)
-    •   2D array with shuffled pairs 
+    •   2D array with shuffled pairs (done)
 
 - makeBoard function:
-    •   uses arrow notation
-    •   rows and cols with default params (done)
+    •   uses arrow notation (done)
+    •   rows and cols with default params ()
 
 - resetBoard function:
-    •   uses arrow notation
+    •   uses arrow notation (done)
 
 - process function:
     •   uses arrow notation
