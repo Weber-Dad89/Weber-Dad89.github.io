@@ -15,12 +15,12 @@ Memory Match Game
     •   uses arrow notation (done)
 
 - process function:
-    •   uses arrow notation
-    •   rows and cols with default params
-    •   Invokes checkMatch as callback with setTimout
+    •   uses arrow notation (done)
+    •   rows and cols with default params (done)
+    •   Invokes checkMatch as callback with setTimout (done)
 
 - checkMatch function:
-    •   Uses arrow notation
+    •   Uses arrow notation (done)
 
 - The memory match game works correctly
 

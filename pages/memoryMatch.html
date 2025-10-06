@@ -53,7 +53,7 @@
                 grid[i] = grid[j];
                 grid[j] = temp;
                 }
-                return grid; // TODO: Assign to a variable
+                return grid; // Assigned to grid var in gameReset()
             }
 
             let makeBoard= (rows=4, cols=4) => {
@@ -76,10 +76,58 @@
                 let grid= loadMap(4, 4);
                 makeBoard(4, 4);
                 console.log(grid);
-                map = shuffle(grid); // function call to randomize the 1D array
-                console.log(map); // Output: Randomized array of 16 single digit elements (1-8)
+                grid = shuffle(grid); // function call to randomize the 1D array
+                console.log(grid); // Output: Randomized array of 16 single digit elements (1-8)
             }
-                
+
+            // Common to set up using  a nested loop
+            const array2D = [];
+            for (let row = 0; row < 4; row++) {
+                const row = [];
+                array2D[row] = [];
+                for ( let col = 0; col < 4; col++) {
+                    array2D[row][col] = grid;
+                }
+                console.log(array2D);
+            }
+            
+            let process= (row=4, col=4) => {
+                let clickled_tile = document.getElementById(row + '_' + col);
+
+                // Clicked tile not already contains data
+                if (!Boolean(clicked_tile.innerHTML)) {
+
+                    // Tile 1 not yet selected
+                    if (!tile1) {
+                        tile1= clicked_tile;
+                        clicked_tile.innerHTML = map[row][col];
+                    }
+
+                    // Tile 2 not yet selected
+                    else if (!tile2) {
+                        tile2= cilcked_tile;
+                        clicked_tile.innerHTML = map[row][col];
+
+                        // TODO: Set timeout callback function
+                        setTimeout(checkMatch(),1000);
+                    }
+                }
+            }
+
+            const checkMatch= () => {
+                // Compares the two clicked tiles using the global variables, 
+                // if matched, both tiles removed from board
+                // if not matched, inner contents will display blank squares
+
+                if (tile1.innerHTML == tile2.innerHTML) {
+                    tile1.hidden = true;
+                    tile2.hidden = true;
+                }
+                tile1.innerHTML = ' ';
+                tile2.innerHTML = ' ';
+                tile1 = tile2 = null;
+            }
+            
         </script>
     </body>
 </html>
