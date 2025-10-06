@@ -28,6 +28,7 @@
         <div id='gameBoard'></div>
 
         <script>
+            let grid= [];
             let map = [];
             let tile1 = null, tile2 = null;
 
@@ -61,10 +62,10 @@
                 for (let row = 0; row < rows; row ++) {
                     output += '<tr>';
                         for (let col = 0; col < cols; col++) {
-                            output += '<td<button' +
-                                ' class="tile" ' +
-                                ' id=" ' + row + '_' + col + ' " ' +
-                                ' onclick="process (' + row + ' , ' + col + ') ">' +
+                            output += '<td><button' +
+                                ' class="tile"' +
+                                ' id="' + row + '_' + col + '"' +
+                                ' onclick="process (' + row + ',' + col + ')">' +
                                 '</button></td>';
                         }
                         output += '</tr>';
@@ -73,26 +74,32 @@
             }
 
             let gameReset= () => {
-                let grid= loadMap(4, 4);
-                makeBoard(4, 4);
+                grid= loadMap(4, 4);
                 console.log(grid);
-                grid = shuffle(grid); // function call to randomize the 1D array
-                console.log(grid); // Output: Randomized array of 16 single digit elements (1-8)
+                let shuffledArray= shuffle(grid); // function call to randomize the 1D array
+                console.log(shuffledArray); // Output: Randomized array of 16 single digit elements (1-8)
+                //makeBoard(4, 4);
+
+                // Nested loops to create 2D Array to global var map=[]
+                map=[]
+                //const array2D = [];
+                let i = 0;
+                for (let row = 0; row < 4; row++) {
+                    const Arow = [];
+                    //array2D[row] = [];
+                    for ( let col = 0; col < 4; col++) {
+                        Arow.push(shuffledArray[i]);
+                        i++;
+                    }
+                    map.push(Arow);
+                }
+                makeBoard(4, 4);
+                console.log(map);                
             }
 
-            // Common to set up using  a nested loop
-            const array2D = [];
-            for (let row = 0; row < 4; row++) {
-                const row = [];
-                array2D[row] = [];
-                for ( let col = 0; col < 4; col++) {
-                    array2D[row][col] = grid;
-                }
-                console.log(array2D);
-            }
             
             let process= (row=4, col=4) => {
-                let clickled_tile = document.getElementById(row + '_' + col);
+                let clicked_tile = document.getElementById(row + '_' + col);
 
                 // Clicked tile not already contains data
                 if (!Boolean(clicked_tile.innerHTML)) {
@@ -105,11 +112,11 @@
 
                     // Tile 2 not yet selected
                     else if (!tile2) {
-                        tile2= cilcked_tile;
+                        tile2= clicked_tile;
                         clicked_tile.innerHTML = map[row][col];
 
-                        // TODO: Set timeout callback function
-                        setTimeout(checkMatch(),1000);
+                        // Optional: Can adjust interval time as desired (milliseconds)
+                        setTimeout(checkMatch,1000);
                     }
                 }
             }
@@ -123,11 +130,11 @@
                     tile1.hidden = true;
                     tile2.hidden = true;
                 }
-                tile1.innerHTML = ' ';
-                tile2.innerHTML = ' ';
+                tile1.innerHTML = '';
+                tile2.innerHTML = '';
                 tile1 = tile2 = null;
             }
-            
+
         </script>
     </body>
 </html>

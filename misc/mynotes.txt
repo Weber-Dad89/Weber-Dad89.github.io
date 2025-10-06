@@ -9,7 +9,7 @@ Memory Match Game
 
 - makeBoard function:
     •   uses arrow notation (done)
-    •   rows and cols with default params ()
+    •   rows and cols with default params (done)
 
 - resetBoard function:
     •   uses arrow notation (done)
@@ -22,7 +22,7 @@ Memory Match Game
 - checkMatch function:
     •   Uses arrow notation (done)
 
-- The memory match game works correctly
+- The memory match game works correctly (done)
 
 
 
