@@ -1,25 +1,25 @@
 Asssignment Notes and tasks to completion 
-- Get cutom error class to function properly
+* Functional link to webpage and portfolio site *
 
-- 
+- All 10 syntax errors cleared (done)
     •   
     •   
     •   
     •  
 
-- 
+- Custom RuleError class setup and implemented
     •   
     •   
 
-- 
+- checkInput function properly Modified (done)
     •   
 
-- 
+- Add extra feedback (TODO)
     •   
     •   
     •   
 
-- 
+- Add any extra styling to webpage (TODO)
     •   
 
 - 

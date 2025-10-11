@@ -34,11 +34,13 @@
 		</div>
 		
 		<br><button id='guess' onclick='tryGuess()'>Try Guess</button><br><br>
-		<p id="message"></p>
+		<p id="message">Guess the code.</p>
+		<p id="cipherText" ></p>
 		
 		<div id='pastGuesses'></div>
 
 		<script>
+			let cipherText= document.getElementById('cipherText');
 			let code = [];
 			resetGame();
 			
@@ -77,45 +79,34 @@
 			// TODO: Create custom error class
 			class RuleError extends Error {
             constructor(message) {
-                super('You did a big no-no.');
+                super(message);
                 this.name= 'Rule Error: ';
 				}
 			}
 		
 			function checkInput(slot) {	
-				const message= document.getElementById('message');
+				cipherText.innerHTML= ""; // clears with each check
+				// Running check...
+				document.getElementById('message').innerHTML= "Checking code..."; // updates after button click
+				let displayMessage= document.getElementById('message');
 
 				// TODO: Add try/catch
 				try {
-					document.getElementById('message').innerHTML = 'Checking code...';
-					setInterval(2000);
-					//console.log(checkInput(slot));
-					//console.log('Processing data...'); 
-					if (isNaN(slot))
-					throw ('Invalid data: That is not a number, use digits only.');
-
 					if (slot < 1 || slot > 6 )
-					throw ("Invalid data: digits cannot be less than 1 or greater than 6.");
+					throw new RuleError("Digits cannot be less than 1 or greater than 6.");
 
-					if (slot === "abcd")
-					throw ("We're not doing the alphabet.");
-
-					if (slot == 1234)
-						throw ('Going to have to try harder than that.');
+					if (isNaN(slot))
+					throw new RuleError('Invalid entry, use digits only.');
 					
 					if (slot instanceof TypeError)
-						console.error("Caught a type error: ", RuleError.message);					
-					} 
-				catch (err) {
-					message.innerHTML = "User Error: " + RuleError.super;
-					message.innerHTML = "User Error: " + RuleError.message;
-					//alert(console.log(err));
-					//alert(err.message);
-					//console.log(err.name);
-					//console.log(err.mesage);
+						console.log("Caught a type error: ", RuleError.super);
+
+				} catch (err) {
 					//alert("Error Caught! You violated the rules.");
+					console.log(err.name + err.message);
+					let displayMessage= err.name + err.message;
+					document.getElementById('message').innerHTML = displayMessage;
 					return false;
-					// new Error("Invalid entry. Please enter four digits for valid guesses.");
 				}
 				return true;
 			}
@@ -144,7 +135,7 @@
 						if (guesses[i] === codeCopy[i]) {							
 							correctPosition++;
 							// Account for used peg
-							codeCopy[i = '-'];
+							codeCopy[i] = '-';
 						}
 					
 					// Determine remaining correct colors
@@ -163,7 +154,7 @@
 							slot.style.backgroundColor = 'lime';
 							slot.style.color = 'green';
 						}
-						
+						document.getElementById('message').innerHTML= "You unlocked the code, congrats you won!";
 						document.getElementById('guess').innerHTML = "Reset Game";
 						document.getElementById('guess').setAttribute("onclick", "resetGame()");
 					}
@@ -182,14 +173,15 @@
 							output += '&#9817;';
 						
 						// Update display
+						cipherText.innerHTML= "Not quite, keep guessing."; // When the user has guessed but not won yet.
 						let currentDisplay = document.getElementById('pastGuesses');
 						currentDisplay.innerHTML = output + '</p>' + currentDisplay.innerHTML;	
 
 						clearSlots();
-			
 				}
 			}
 		}
+		//debugger;
 		</script>
 	</body>
 </html>
