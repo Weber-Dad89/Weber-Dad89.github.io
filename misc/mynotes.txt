@@ -1,28 +1,28 @@
-Memory Match Game 
-- create link to Memory Match Game from main page (portfolio site) - N/A (Added) 
+Asssignment Notes and tasks to completion 
+- Get cutom error class to function properly
 
-- loadMap function:
-    •   uses arrow notation (done)
-    •   rows and cols with default params (done)
-    •   1D array with shuffle (done)
-    •   2D array with shuffled pairs (done)
+- 
+    •   
+    •   
+    •   
+    •  
 
-- makeBoard function:
-    •   uses arrow notation (done)
-    •   rows and cols with default params (done)
+- 
+    •   
+    •   
 
-- resetBoard function:
-    •   uses arrow notation (done)
+- 
+    •   
 
-- process function:
-    •   uses arrow notation (done)
-    •   rows and cols with default params (done)
-    •   Invokes checkMatch as callback with setTimout (done)
+- 
+    •   
+    •   
+    •   
 
-- checkMatch function:
-    •   Uses arrow notation (done)
+- 
+    •   
 
-- The memory match game works correctly (Complete)
+- 
 
 
 
