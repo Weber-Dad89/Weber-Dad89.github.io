@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Puzzle</title>
+    <style>
+        #puzzle {
+            width: 500px;
+            height: 500px;
+            border: 5px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div id="puzzle"></div>
+
+    <script>
+        // All code must be implemented here
+        const puzzle= document.getElementById("puzzle"); //assigns puzzle as a variable to do things
+        puzzle.style.position= 'relative';
+        puzzle.style.backgroundColor='#7338A0'; // changes the color of the background to purple
+
+        // Creates h1 heading element with text
+        const title= document.createElement('h1');
+        title.innerHTML= "DOM PUZZLE";
+        document.body.insertBefore(title, puzzle); // places the title above the div Puzzle with .insertBefore
+        console.log(title);
+
+        // Creates footer element with text
+        const description= document.createElement('footer');
+        description.innerHTML= "This is a puzzle created entirely with JavaScript";
+        document.body.appendChild(description); // places the description below the puzzle with .appendChild as the last child of the parent (body)
+        console.log(description);
+
+        // event listener when mouse enteres object
+        puzzle.addEventListener("mouseenter", () => {
+            puzzle.style.border= '10px';
+            puzzle.style.borderColor= "yellow"; 
+            puzzle.style.borderStyle= 'dotted';
+            console.log("Changes border to highlighted style. (yellow)");
+        });
+
+        // event listener when mouse leaves object
+        puzzle.addEventListener("mouseleave", () => {
+            puzzle.style.borderColor= 'black';
+            puzzle.style.border= '5px';
+            puzzle.style.borderStyle= 'solid';
+            console.log("Changes border to original border");
+        });
+
+                
+		function bigButtons() {
+            // bigContainer to add to the puzzle that contains the bigButtons
+            const bigContainer= document.createElement('div');
+            bigContainer.style.position= 'absolute';
+            bigContainer.style.top= '0';
+            bigContainer.style.left= '0';
+            bigContainer.style.width= '250px';
+            bigContainer.style.height= '250px';
+            
+
+			const table= document.createElement('table');
+            table.style.borderCollapse= "collapse";
+            table.style.width= '250px';
+            table.style.height= '250px';
+
+            const labels= ["A", "B", "C", "D"];
+            let labelIndex= 0;
+            for (let row= 0; row <2; row++) {
+                const tr= document.createElement('tr');
+                for (let col= 0; col < 2; col++) {
+                    const td= document.createElement('td');
+                    // td.style.width= '125px';
+                    // td.style.height= '125px';
+
+                    const bigButtons= document.createElement('button');
+                    bigButtons.textContent= labels[labelIndex];   //  Assigns each buttons text to include the label letters
+                    bigButtons.id= 'button' + labels[labelIndex]; //  Assigns unique id to each button
+
+                    // CSS styling for buttons
+                    bigButtons.style.width= '125px';
+                    bigButtons.style.height= '125px';
+                    bigButtons.style.fontSize= '24px';
+                    td.appendChild(bigButtons);
+                    tr.appendChild(td);
+
+                    labelIndex++;   // counts each element in the labels array
+                }
+                table.appendChild(tr);
+            }
+            bigContainer.appendChild(table);
+            puzzle.appendChild(bigContainer);
+            
+            // CSS styling to change button background colors
+            document.getElementById('buttonA').style.backgroundColor= '#9455F4';
+            document.getElementById('buttonB').style.backgroundColor= '#4A2B74';
+            document.getElementById('buttonC').style.backgroundColor= '#594492';
+            document.getElementById('buttonD').style.backgroundColor= '#854DDC';
+            console.log(table);
+        }
+
+
+        function miniButtons() {
+            const lilContainer= document.createElement('div');
+            lilContainer.style.position= 'absolute';
+            lilContainer.style.bottom= '0';
+            lilContainer.style.right= '0';
+            lilContainer.style.width= '250px';
+            lilContainer.style.height= '250px';
+            
+            const table= document.createElement('table');
+            table.style.borderCollapse= 'collapse';
+            table.style.width= '250px';
+            table.style.height= '250px';
+
+            for (let row= 0; row < 10; row++) {
+                const tr= document.createElement('tr');
+                for (let col=0; col < 10; col++) {
+                    const td= document.createElement('td');
+                    td.style.width= '25px';
+                    td.style.height= '24px';
+                    td.style.padding= '0';
+
+                    const lilButtons= document.createElement('button');
+                    lilButtons.textContent= "";
+                    lilButtons.style.width= '25px';
+                    lilButtons.style.height='24px';
+                    lilButtons.style.padding= '0';
+                    lilButtons.style.backgroundColor= '#C39CFE';
+
+                    td.setAttribute('onClick', 'changeColor(btn)');
+                    td.appendChild(lilButtons);
+                    tr.appendChild(td);
+                }
+                table.appendChild(tr);
+                // puzzle.appendChild(table);
+            }
+            lilContainer.appendChild(table);
+            document.getElementById('puzzle').appendChild(lilContainer);
+        }
+
+        function changeColor(btn) {
+            const color= [];
+			color.push(btn);
+			color.push(btn.previousElementSibling);
+			color.push(btn.nextElementSibling);
+        }
+
+        bigButtons();
+        miniButtons();
+
+    </script>
+    
+</body>
+</html>
