@@ -58,6 +58,7 @@
             bigContainer.style.left= '0';
             bigContainer.style.width= '250px';
             bigContainer.style.height= '250px';
+            bigContainer.style.padding= '0';
             
 
 			const table= document.createElement('table');
@@ -82,6 +83,7 @@
                     bigButtons.style.width= '125px';
                     bigButtons.style.height= '125px';
                     bigButtons.style.fontSize= '24px';
+                    bigButtons.style.padding= '0'
                     td.appendChild(bigButtons);
                     tr.appendChild(td);
 
@@ -102,10 +104,11 @@
 
 
         function miniButtons() {
+            // lilContainer to add to the puzzle that contains the 100 mini buttons
             const lilContainer= document.createElement('div');
             lilContainer.style.position= 'absolute';
-            lilContainer.style.bottom= '0';
-            lilContainer.style.right= '0';
+            lilContainer.style.bottom= '10px';
+            lilContainer.style.right= '0px';
             lilContainer.style.width= '250px';
             lilContainer.style.height= '250px';
             
@@ -118,18 +121,18 @@
                 const tr= document.createElement('tr');
                 for (let col=0; col < 10; col++) {
                     const td= document.createElement('td');
-                    td.style.width= '25px';
-                    td.style.height= '24px';
+                    // td.style.width= '24px';
+                    // td.style.height= '24px';
                     td.style.padding= '0';
 
                     const lilButtons= document.createElement('button');
                     lilButtons.textContent= "";
                     lilButtons.style.width= '25px';
                     lilButtons.style.height='24px';
-                    lilButtons.style.padding= '0';
+                    lilButtons.style.padding= '10px';
                     lilButtons.style.backgroundColor= '#C39CFE';
 
-                    td.setAttribute('onClick', 'changeColor(btn)');
+                    lilButtons.setAttribute('onClick', 'changeColor(this)');
                     td.appendChild(lilButtons);
                     tr.appendChild(td);
                 }
@@ -141,11 +144,32 @@
         }
 
         function changeColor(btn) {
-            const color= [];
-			color.push(btn);
-			color.push(btn.previousElementSibling);
-			color.push(btn.nextElementSibling);
-        }
+            // const color= [];
+            // console.log(btn);
+			// color.push(btn);
+			// color.push(btn.previousElementSibling);
+			// color.push(btn.nextElementSibling);
+
+            const td= btn.parentNode; // looks to the parent of the child
+            const prevTd= td.previousElementSibling;
+            const nextTd= td.nextElementSibling;
+
+            // Colors the clicked button to purple
+            btn.style.backgroundColor= '#4A2574'; 
+
+            // Colors the button to the left of the cell to orange
+            if  (prevTd) {
+                const prevBtn= prevTd.firstElementChild;
+                if (prevBtn)
+                    prevBtn.style.backgroundColor= '#FF9E00';
+                }
+            // Colors the button to the right of the cell to orange
+            if (nextTd) {
+                const nextBtn= nextTd.firstElementChild;
+                if (nextBtn)
+                    nextBtn.style.backgroundColor= '#FF9E00';
+                }
+		}
 
         bigButtons();
         miniButtons();
