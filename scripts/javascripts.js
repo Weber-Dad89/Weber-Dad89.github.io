@@ -3,4 +3,4 @@ function myGreeting() {
   document.getElementById("demo2").innerHTML = "How are you?";
 }
 
-onload=init;
+// onload=init;
