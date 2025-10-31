@@ -1,25 +1,26 @@
-Asssignment Notes and tasks to completion 
-* Functional link to webpage and portfolio site *
+Asssignment Notes and Tasks to Completion 
+* Functional link to webpage and portfolio site * (optional)
 
-- All 10 syntax errors cleared (done)
-    •   
-    •   
-    •   
-    •  
+- Implement Form fields correctly and use HTML attributes for validation
+    •   name
+    •   phone
+    •   email
+    •   comment
+    •   use HTML attributes for validation
 
-- Custom RuleError class setup and implemented
-    •   
-    •   
+- Form fields (Username, Password) are correctly implement.
+    •   employ real-time feedback by displaying decorated messages on the page (not alert or console)
+    •   checks to insure the input meets or fails to meet required criteria
 
-- checkInput function properly Modified (done)
-    •   
+- Implement sanitization function in JS to remove 5 bad characters (<, >, &, ", ')
+    •   Replace characters with equivalent correct characters (&lt;, &gt;, &amp;, &apos;)
 
-- Add extra feedback (TODO)
-    •   
-    •   
-    •   
+- Implement submit button
+    •   button uses an event listener to collect all data from the form
+    •   sends the data to the sanitization function
+    •   ensure sanitized data is stored in variables or an array
 
-- Add any extra styling to webpage (TODO)
+- 
     •   
 
 - 
