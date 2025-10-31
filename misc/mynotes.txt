@@ -1,12 +1,12 @@
 Asssignment Notes and Tasks to Completion 
 * Functional link to webpage and portfolio site * (optional)
 
-- Implement Form fields correctly and use HTML attributes for validation
-    •   name
-    •   phone
-    •   email
-    •   comment
-    •   use HTML attributes for validation
+- Implement Form fields correctly and use HTML attributes for validation (done)
+    •   name (done)
+    •   phone (done)
+    •   email (done)
+    •   comment (done)
+    •   use HTML attributes for validation (done)
 
 - Form fields (Username, Password) are correctly implement.
     •   employ real-time feedback by displaying decorated messages on the page (not alert or console)
@@ -15,7 +15,8 @@ Asssignment Notes and Tasks to Completion
 - Implement sanitization function in JS to remove 5 bad characters (<, >, &, ", ')
     •   Replace characters with equivalent correct characters (&lt;, &gt;, &amp;, &apos;)
 
-- Implement submit button
+- Implement submit button (partially done)
+    •   create submit button (done)
     •   button uses an event listener to collect all data from the form
     •   sends the data to the sanitization function
     •   ensure sanitized data is stored in variables or an array

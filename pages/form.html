@@ -4,12 +4,103 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comment Form</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Electrolize&family=Geo:ital@0;1&family=Iceberg&family=Michroma&family=Nabla&family=Orbitron:wght@400..900&family=Quantico:ital,wght@0,400;0,700;1,400;1,700&family=Silkscreen:wght@400;700&family=Zen+Dots&display=swap" rel="stylesheet">
+
+    <style>
+        /* CSS styling */
+        body, h1, h3 {
+            text-align: center;
+            background-color: blueviolet;
+        }
+
+        h1, h3, .sageText {
+            font-family: 'Iceberg';
+            margin-bottom: 0.5em;
+        }
+
+        form {
+            display: inline-block;
+            /* Form outline */
+            padding: 1em;
+            border: 1px solid #cccccc;
+            border-radius: 1em;
+        }
+
+        .inputBoxes, #inputLabels {
+            font: 1em 'Orbitron';
+            margin-top: .5em;
+        }
+
+        label {
+            /* Uniform size & alignment */
+            display: inline-block;
+            min-width: 45px;
+            text-align: right;
+        }
+
+        input {
+            /* To make sure that all the text fields have the same font settings */
+            font: 1em 'Electrolize';
+            /* Uniform text field size */
+            width: 150px;
+            box-sizing: border-box;
+            /* Matches form field borders */
+            border: 1px solid #999999;
+        }
+
+        textarea {
+            font: 1em 'Orbitron';
+            width: 300px;
+            margin-bottom: 5em;
+            box-sizing: border-box;
+            border: 5px double blueviolet;
+        }
+
+        .button {
+            /* Align button with the text fields */
+            padding-left: 90px; /* matches the same size as the label elements */
+        }
+
+        button {
+            /* This extra margin represent roughly the same space as the space as the space between the labels and their text fields */
+            margin-right: 6.5em;
+        }
+    </style>
 </head>
 <body>
-    <h1 id="title" style="position: center;">Comments</h1>
+    <h1 id="title" style="position: center;">Cipher Sage Comment Form</h1>
 
-    <p>Have something to say, leave a <strong>Comment</strong>
+    <p class="sageText">Have something to say, enter information and leave a <strong>Comment</strong>
     below!</p>
+
+    <form id="commentForm" action="process.php" method="get">
+        <p id="inputLabels" class="inputBoxes">
+        <label for="name">Name:</label>
+        <input id="name" type="text" name="userName">
+        
+        <!--Need to fix styling of the format-->
+        <label for="phone">Phone:<br />
+        <!--small>Format: 123-456-7890</small-->
+        </label>
+        <input
+            id="phone"
+            type="tel"
+            name="phoneNum"
+            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+            >
+
+        <label for="email">Email:</label>
+        <input id="email" type="email" name="email">
+        </p>
+
+        <h3>Leave a comment:</h3>
+        <textarea id="msg" type="text" name="userMsg" rows="5" cols="40" placeholder="Type here..."></textarea>
+
+        <p class="button">
+            <button type="submit">Send Your Message</button>
+        </p>
+    </form>
 
     
 </body>
