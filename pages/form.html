@@ -20,7 +20,9 @@
         }
 
         form {
-            display: inline-block;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             /* Form outline */
             padding: 1em;
             border: 1px solid #cccccc;
@@ -43,29 +45,32 @@
             /* To make sure that all the text fields have the same font settings */
             font: 1em 'Electrolize';
             /* Uniform text field size */
-            width: 150px;
+            width: 200px;
             box-sizing: border-box;
             /* Matches form field borders */
             border: 1px solid #999999;
         }
 
         textarea {
+            display: block;
             font: 1em 'Orbitron';
-            width: 300px;
-            margin-bottom: 5em;
+            margin: 1em auto;
             box-sizing: border-box;
             border: 5px double blueviolet;
         }
 
         .button {
             /* Align button with the text fields */
-            padding-left: 90px; /* matches the same size as the label elements */
+            margin: 1em auto; /* matches the same size as the label elements */
         }
 
         button {
-            /* This extra margin represent roughly the same space as the space as the space between the labels and their text fields */
-            margin-right: 6.5em;
+            margin: 1em auto 0 auto;
+            width: auto;
+            align-self: center;
         }
+
+
     </style>
 </head>
 <body>
@@ -99,17 +104,16 @@
             >
 
         <label for="email">Email:</label>
-        <input id="email" type="email" name="email" autocomplete="email">
+        <input id="email" type="email" name="email" autocomplete="email" title="example email: john.doe@email.com">
         </p>
 
         <h3>Leave a comment:</h3>
         <textarea id="msg" type="text" name="userMsg" rows="5" cols="40" placeholder="Type here..."></textarea>
 
-        <p id="feedbackMsg" class="button">Fill the data and click the button when finished.
+        <span id="feedbackMsg" >Fill the data and click the button when finished.</span><br>
             <button type="submit">Send Your Message</button>
-        </p>
 
-        <p id="invalidEntryMessage">Enter data and click the button</p>
+        <span id="invalidEntryMessage" ></span>
     </form>
 
     <script>
@@ -119,28 +123,40 @@
             let name= document.getElementById('name').value;
             let phone= document.getElementById('phone').value;
             let email=document.getElementById('email').value;
-            //  let feedbackMsg=document.getElementById('feedbackMessage');
+            let message= document.getElementById('msg').value;
             let invalidEntryMessage= document.getElementById('invalidEntryMessage');
 
              // Prevents the submission of the form until data meets reuirements
-            if (name.includes("")) {
-                invalidEntryMessage('Your name cannot be blank, sorry.');
-                event.preventDefault();
-            }
-            if (name.includes('abcd')) {
-                invalidEntryMessage('Your name cannot be "abcd".');
+            if (name === "" || phone === "" || email === "") {
+                invalidEntryMessage.innerText= 'Fields cannot be blank. All fields must be filled out to submit.';
                 event.preventDefault();
             }
 
-            if (phone != true) {
-                invalidEntryMessage("Invalid entry: Please enter your phone in the correct format.");
+            else if (phone != true) {
+                invalidEntryMessage.innerText= "Invalid entry: Please enter your phone in the correct format.";
+                event.preventDefault();
+            }
+
+            else if (email != true) {
+                invalidEntryMessage.innerText= "Please enter a correct email address."
                 event.preventDefault();
             }
             
             else if (name.includes(email)) {
-                invalidEntryMessage("Invalid entry: Your email cannot be your user name.");
+                invalidEntryMessage.innerText= "Invalid entry: Your email cannot be your user name.";
                 event.preventDefault();
             }
+
+            else if (message === "") {
+                invalidEntryMessage.innerText= "Don't forget to enter your comment then submit."
+                event.preventDefault();
+            }
+
+            else {
+                invalidEntryMessage.innerText= ""; // clears error message if valid and submits form
+            }
+
+
         });
             
         //  30 char maximum, input of correct name using lower-case and, upper-case letter
@@ -151,7 +167,7 @@
         document.getElementById('name').addEventListener('input', function() {
             console.log('user is typing in name input');
             let name= this.value;
-            let feedbackMsg=document.getElementById('feedbackMessage');
+            let feedbackMsg=document.getElementById('feedbackMsg');
             const missing= [];
 
             if (name.length > 50)
@@ -169,21 +185,21 @@
             let hasNumber= /[0-9]/.test(name);
             if (hasNumber) {
                 missing.push('cannot contain numbers');
-                feedbackMsg.innerText= missing;
             }
 
             let hasSpecial= /[$%&*!@#]/.test(name);
             if (hasSpecial)
                 missing.push('no special characters in name');
 
+            feedbackMsg.innerText= "Name requirements: " + missing;
             });
 
         //  phone validation func
         document.getElementById('phone').addEventListener('input', function() {
             console.log('user is typing in phone input');
             let phone= this.value;
-            let feedbackMsg=document.getElementById('feedbackMessage');
-            //  const pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}";
+            let feedbackMsg=document.getElementById('feedbackMsg');
+            const pattern= /^[1-9]\d{2}-\d{3}-\d{4}$/;        //  regex expression matching format: 123-456-7890
             const missing= [];
 
             let hasTel= /[0-9]/.test(phone);
@@ -191,18 +207,26 @@
                 missing.push('Incorrect phone number');
 
             if (!pattern.test(phone)) {
-                feedbackMsg.textContent= "Phone number must be in this format: 123-456-7890";
+                feedbackMsg.innerText= "Phone number must be in this format: 123-456-7890";
             }
-
             else {
-                feedbackMsg.textContent= "";
+                feedbackMsg.innerText= "";
             }
-
             });
 
-            //TODO:
-                    // real-time feedback
-
+            //  phone validation func
+        document.getElementById('email').addEventListener('input', function() {
+            console.log('user is typing in email input');
+            let email= this.value;
+            let feedbackMsg=document.getElementById('feedbackMsg');
+            const pattern= /^[^@\s]+@[^@\s]+\.[^@\s]+$/;        //  regex expression matching format: abc@email.xxx
+            
+            if (!pattern.test(email)) {
+                invalidEntryMessage.innerText= "Please enter a valid email address that includes @ and . (domain)";
+            } else {
+                feedbackMsg.innerText= "";
+            }
+        });
 
     </script>
 
