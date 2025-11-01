@@ -76,8 +76,15 @@
 
     <form id="commentForm" action="process.php" method="get">
         <p id="inputLabels" class="inputBoxes">
+
         <label for="name">Name:</label>
-        <input id="name" type="text" name="userName">
+        <input
+            id="name"
+            type="text"
+            name="userName"
+            pattern="[A-Za-z ]{2,30}"
+            title="Your name must be between 2 and 50 characters, containing only letters and spaces."
+            >
         
         <!--Need to fix styling of the format-->
         <label for="phone">Phone:<br />
@@ -88,19 +95,116 @@
             type="tel"
             name="phoneNum"
             pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+            title="Please match the format: 123-456-7890"
             >
 
         <label for="email">Email:</label>
-        <input id="email" type="email" name="email">
+        <input id="email" type="email" name="email" autocomplete="email">
         </p>
 
         <h3>Leave a comment:</h3>
         <textarea id="msg" type="text" name="userMsg" rows="5" cols="40" placeholder="Type here..."></textarea>
 
-        <p class="button">
+        <p id="feedbackMsg" class="button">Fill the data and click the button when finished.
             <button type="submit">Send Your Message</button>
         </p>
+
+        <p id="invalidEntryMessage">Enter data and click the button</p>
     </form>
+
+    <script>
+
+        // This is used to perform checks on user input and make sure they dont do any of the below options
+        document.getElementById('commentForm').addEventListener('submit', function(event){
+            let name= document.getElementById('name').value;
+            let phone= document.getElementById('phone').value;
+            let email=document.getElementById('email').value;
+            //  let feedbackMsg=document.getElementById('feedbackMessage');
+            let invalidEntryMessage= document.getElementById('invalidEntryMessage');
+
+             // Prevents the submission of the form until data meets reuirements
+            if (name.includes("")) {
+                invalidEntryMessage('Your name cannot be blank, sorry.');
+                event.preventDefault();
+            }
+            if (name.includes('abcd')) {
+                invalidEntryMessage('Your name cannot be "abcd".');
+                event.preventDefault();
+            }
+
+            if (phone != true) {
+                invalidEntryMessage("Invalid entry: Please enter your phone in the correct format.");
+                event.preventDefault();
+            }
+            
+            else if (name.includes(email)) {
+                invalidEntryMessage("Invalid entry: Your email cannot be your user name.");
+                event.preventDefault();
+            }
+        });
+            
+        //  30 char maximum, input of correct name using lower-case and, upper-case letter
+        //  checks that phone is entered correctly and no special characters in name
+        // the EventListener will inform the user in real-time what is required when adding data to forms!!!
+
+        // name validation func
+        document.getElementById('name').addEventListener('input', function() {
+            console.log('user is typing in name input');
+            let name= this.value;
+            let feedbackMsg=document.getElementById('feedbackMessage');
+            const missing= [];
+
+            if (name.length > 50)
+                missing.push('50- character maximum');
+
+            let hasLower= /[a-z]/.test(name);
+            if (!hasLower)
+                missing.push('lower-case letter');
+
+            let hasUpper= /[A-Z]/.test(name);
+            if (!hasUpper)
+                missing.push('Upper-case letter');
+
+            // TODO: Fix this conditional statement
+            let hasNumber= /[0-9]/.test(name);
+            if (hasNumber) {
+                missing.push('cannot contain numbers');
+                feedbackMsg.innerText= missing;
+            }
+
+            let hasSpecial= /[$%&*!@#]/.test(name);
+            if (hasSpecial)
+                missing.push('no special characters in name');
+
+            });
+
+        //  phone validation func
+        document.getElementById('phone').addEventListener('input', function() {
+            console.log('user is typing in phone input');
+            let phone= this.value;
+            let feedbackMsg=document.getElementById('feedbackMessage');
+            //  const pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}";
+            const missing= [];
+
+            let hasTel= /[0-9]/.test(phone);
+            if (!hasTel)
+                missing.push('Incorrect phone number');
+
+            if (!pattern.test(phone)) {
+                feedbackMsg.textContent= "Phone number must be in this format: 123-456-7890";
+            }
+
+            else {
+                feedbackMsg.textContent= "";
+            }
+
+            });
+
+            //TODO:
+                    // real-time feedback
+
+
+    </script>
 
     
 </body>
