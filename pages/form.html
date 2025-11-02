@@ -16,16 +16,19 @@
 
         h1, h3, .sageText {
             font-family: 'Iceberg';
-            margin-bottom: 0.5em;
+            margin-bottom: 1em;
         }
 
         form {
             display: flex;
             flex-direction: column;
             align-items: center;
+
             /* Form outline */
-            padding: 1em;
-            border: 1px solid #cccccc;
+            padding: 3em;
+            border: 5px solid #cccccc;
+            width: 50%;
+            margin: 1em auto;
             border-radius: 1em;
         }
 
@@ -45,7 +48,7 @@
             /* To make sure that all the text fields have the same font settings */
             font: 1em 'Electrolize';
             /* Uniform text field size */
-            width: 200px;
+            width: 300px;
             box-sizing: border-box;
             /* Matches form field borders */
             border: 1px solid #999999;
@@ -110,10 +113,10 @@
         <h3>Leave a comment:</h3>
         <textarea id="msg" type="text" name="userMsg" rows="5" cols="40" placeholder="Type here..."></textarea>
 
-        <span id="feedbackMsg" >Fill the data and click the button when finished.</span><br>
-            <button type="submit">Send Your Message</button>
+        <span id="feedbackMsg" style="color: yellow;font-weight: normal;">Fill the data and click the button when finished.</span><br>
+            <button type="submit">Send Your Message</button><br>
 
-        <span id="invalidEntryMessage" ></span>
+        <span id="invalidFormMessage" style="color: red;font-weight: normal;"></span>
     </form>
 
     <script>
@@ -124,39 +127,49 @@
             let phone= document.getElementById('phone').value;
             let email=document.getElementById('email').value;
             let message= document.getElementById('msg').value;
-            let invalidEntryMessage= document.getElementById('invalidEntryMessage');
+            let invalidFormMessage= document.getElementById('invalidFormMessage');
+            const errors= [];
 
              // Prevents the submission of the form until data meets reuirements
-            if (name === "" || phone === "" || email === "") {
-                invalidEntryMessage.innerText= 'Fields cannot be blank. All fields must be filled out to submit.';
+            // if (name === "" || phone === "" || email === "") {
+            //     invalidFormMessage.innerText= 'Fields cannot be blank. All fields must be filled out to submit.';
+            //     event.preventDefault();
+            // }
+
+            //  return for each conditional check sequentially, to show the user what is needed in order to submit form
+            if (!name)
+                errors.push("Name is required.");
+            if (!phone)
+                errors.push("Phone is required.");
+            if (!email)
+                errors.push("Email is required.");
+            if (!message)
+                errors.push("Don't forget to enter your comment!");
+            if (name.includes(email))
+                errors.push("Email cannot be your user name.");
+
+            //  one big check at the end if fields pass validation
+            if (errors.length > 0) {
+                console.log("Invalid form, does not meet requirements.");
+                //  displays each error message on a newline (basic)
+                invalidFormMessage.innerText= errors.join("\n");
+                
+                //  creates an list of bulleted errors for display (better readability? needs a little CSS to clean up white space)
+                //invalidFormMessage.innerHTML= "<ul><li>" + errors.join("</li><li>") + "</li></ul>";
                 event.preventDefault();
+                return;
             }
 
-            else if (phone != true) {
-                invalidEntryMessage.innerText= "Invalid entry: Please enter your phone in the correct format.";
-                event.preventDefault();
-            }
+            // Validated data stored in an array
+            let formData= [name, phone, email, message];
+            console.log("Valid Data Accepted: ", formData)
+            invalidFormMessage.style.color= "white";
+            invalidFormMessage.style.fontWeight= "bold";
+            invalidFormMessage.innerText= "Valid Data Accepted: Your form was submitted!";
+            event.preventDefault(); //  prevents actual submission in order to show valid data in console log
 
-            else if (email != true) {
-                invalidEntryMessage.innerText= "Please enter a correct email address."
-                event.preventDefault();
-            }
-            
-            else if (name.includes(email)) {
-                invalidEntryMessage.innerText= "Invalid entry: Your email cannot be your user name.";
-                event.preventDefault();
-            }
-
-            else if (message === "") {
-                invalidEntryMessage.innerText= "Don't forget to enter your comment then submit."
-                event.preventDefault();
-            }
-
-            else {
-                invalidEntryMessage.innerText= ""; // clears error message if valid and submits form
-            }
-
-
+            // clears fields after valid submission but keeps the valid message displayed to user
+            this.reset();
         });
             
         //  30 char maximum, input of correct name using lower-case and, upper-case letter
@@ -191,7 +204,7 @@
             if (hasSpecial)
                 missing.push('no special characters in name');
 
-            feedbackMsg.innerText= "Name requirements: " + missing;
+            feedbackMsg.innerText= "Name requirements: " + missing.join(", ");
             });
 
         //  phone validation func
@@ -214,7 +227,7 @@
             }
             });
 
-            //  phone validation func
+            //  email validation func
         document.getElementById('email').addEventListener('input', function() {
             console.log('user is typing in email input');
             let email= this.value;
@@ -222,10 +235,25 @@
             const pattern= /^[^@\s]+@[^@\s]+\.[^@\s]+$/;        //  regex expression matching format: abc@email.xxx
             
             if (!pattern.test(email)) {
-                invalidEntryMessage.innerText= "Please enter a valid email address that includes @ and . (domain)";
+                feedbackMsg.innerText= "Please enter a valid email address that includes @ and . (domain)";
             } else {
                 feedbackMsg.innerText= "";
             }
+
+            //  comment validation func
+        document.getElementById('msg').addEventListener('input', function() {
+            console.log('user is typing comment input');
+            let comment= this.value;
+            let feedbackMsg= document.getElementById('feedbackMsg');
+
+            if (comment === "")
+                    feedbackMsg.innerText= "Don't forget to enter your comment then submit.";
+
+            if (comment.length < 1)
+                feedbackMsg.innerText= "Type a comment."
+            else 
+                feedbackMsg.innerText= "";
+            });
         });
 
     </script>
