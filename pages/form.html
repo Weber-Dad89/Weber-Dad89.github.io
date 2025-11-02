@@ -41,7 +41,6 @@
             /* Uniform size & alignment */
             display: inline-block;
             min-width: 45px;
-            text-align: right;
         }
 
         input {
@@ -74,29 +73,63 @@
         }
 
         #accountCreationContainer {
-            max-width: 500px;
+            width: 90%;
+            max-width: 800px;
             margin: 2em auto;
-            padding: 1em;
-            border: 1px solid #3a2074;
+            padding: .5em;
+            border: 1px solid #e6e6e6;
             background: #000000;
-            border-radius: 1.5em;
-        }
-
-        .accountCreation label,
-        .accountCreation input {
-            display: block;
-            margin-bottom: 0.6em;
-            /* To make sure that all the text fields have the same font settings */
-            font: 24px 'Electrolize';
-            color:  rgb(134, 77, 2);
-            /* Uniform text field size */
-            width: max-content;
+            border-radius: 1em;
             box-sizing: border-box;
         }
 
+        #createAccount {
+            width: 20%;
+            max-width: 90%;
+            margin: 0 auto;
+            padding: .5em;
+            border: 1px solid #cccccc;
+            box-sizing: border-box; 
+        }
 
+        #accountCreation {
+            width: 80%;
+            max-width: 90%;
+            margin: 0 auto;
+            padding: .5em;
+        }
 
+        .accountCreation label {
+            color: rgb(134, 77, 2);
+            font-size: 1em;
+            font-family: 'Electrolize', sans-serif;
+            margin-bottom: 0.3 auto;
+            width: auto; /* fills parent container for better alignment */
+        }
+        .accountCreation input {
+            /* To make sure that all the text fields have the same font settings */
+            width: 300px;
+            margin-bottom: 0.4em;
+            padding: .4em .6;
+            font: 1em 'Electrolize', sans-serif;
+            color:  rgb(134, 77, 2);
+        }
 
+        #acctMsg {
+            margin-top: .5em;
+            color: #ffc962;
+            font-size: 1em;
+            padding: .5em;
+            background: #2b2b2b;
+            border-radius: .5em;
+            letter-spacing: 0.5px;
+            text-align: left;
+            min-height: 2em;
+            width: 100%;
+            word-break: break-word; /* ensures long words wrap */
+            /* Uniform text field size */
+            box-sizing: border-box;
+        }
     </style>
 </head>
 <body>
@@ -166,9 +199,10 @@
                     type="password"
                     name="password"
                     minlength="8 characters minimum"
-                    pattern= "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@.#$!%*?&])[A-Za-z\d@.#$!%*?&]{8,15}$""
-                    title="Password must contain one upper-case, one lowercase, one number, and one special character."
+                    pattern= "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@.#$!%*?&])[A-Za-z\d@.#$!%*?&]{8,15}$"
+                    title="Password must contain at minimum: 8 characters, at least one upper-case, one lowercase, one number, and one special character."
                 >
+
             </fieldset>
             <span id="acctMsg" style="color: rgb(146, 123, 9);font-weight: bold;">Enter username and password to create an account</span><br>
             <button id="accountBtn" type="submit" >Register Account</button><br>
@@ -213,10 +247,10 @@
                     }
                     //  replaces ampersand char, this is done first because '&' is part of other entities and needs to be handled before them
                     return  str.replace(/&/g, '&amp;')  
-                                .replace(/</g, '&lt;')           //  replaces all occurences of the less-than sign
-                                .replace(/>/g, '&gt;')          //  replaces all occurences of the greater-than sign
-                                .replace(/"/g, '&quot;')         //  replaces all occurrences of the double quote
-                                .replace(/'/g, '&#039;')       //  replaces all occurrences of the single quote, using the numeric entity for single quotes
+                                .replace(/</g, '&lt;')            //  replaces all occurences of the less-than sign
+                                .replace(/>/g, '&gt;')         //  replaces all occurences of the greater-than sign
+                                .replace(/"/g, '&quot;')    //  replaces all occurrences of the double quote
+                                .replace(/'/g, '&#039;')   //  replaces all occurrences of the single quote, using the numeric entity for single quotes
                 }
             //  one big check at the end if fields pass validation
             if (errors.length > 0) {
@@ -247,12 +281,11 @@
             this.reset();
         });
         
+
         //  Validation checks to follow below   //
-        //  30 char maximum, input of correct name using one lower-case and, one upper-case letter
+        //  50 char maximum, input of correct name using one lower-case and, one upper-case letter
         //  checks that phone is entered correctly and no special characters in name
         // the EventListener will inform the user in real-time what is required when adding data to forms!!!
-
-        // TODO: use JS to perform validation checks on username and password inputs!!!
 
         // name validation func
         document.getElementById('name').addEventListener('input', function() {
@@ -277,7 +310,7 @@
                 missing.push('cannot contain numbers');
             }
 
-            let hasSpecial= /[$%&*!@#]/.test(name);
+            let hasSpecial= /[$%&*!@#<>"]/.test(name);
             if (hasSpecial)
                 missing.push('no special characters in name');
 
@@ -327,8 +360,8 @@
             if (comment === "")
                     feedbackMsg.innerText= "Don't forget to enter your comment then submit.";
 
-            if (comment.length < 1)
-                feedbackMsg.innerText= "Type a comment."
+            if (comment.length < 2)
+                feedbackMsg.innerText= "Type a longer comment.";
             else 
                 feedbackMsg.innerText= "";
             });
@@ -339,20 +372,118 @@
             //  username and password validtion func check
             document.getElementById('accountCreation').addEventListener('submit', function(event) {
                 event.preventDefault(); //  prevents form submission/reset
+                console.log("user is attempting account creation.");
+
                 let username= document.getElementById("userName").value;
                 let password= document.getElementById('password').value;
-                let usernamePattern= /^[a-zA-Z][a-zA-Z0-9_]{2, 15}$/ // (john_Doe00)
-                let passwordPattern= /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@.#$!%*?&])[A-Za-z\d@.#$!%*?&]{8,15}$/ //(PassWord007#)
-
-                console.log("user is attempting account creation.");
-                document.getElementById('acctMsg').innerText= "Account registration is not ready yet."
-
+                const usernamePattern= /^[a-zA-Z][a-zA-Z0-9_]{2,15}$/ // (john_Doe00)
+                const passwordPattern= /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@.#$!%*?&])[A-Za-z\d@.#$!%*?&]{8,16}$/ //(PassWord007#)
+                let hints= [];
+                let acctData= [];
                 console.log(username);
                 console.log(password);
+
+                //  nested func for like feedback on username criteria
+                document.getElementById('userName').addEventListener('input', function() {
+                    console.log('user is typing in username input');
+                    let name= this.value;
+                    let feedbackMsg=document.getElementById('acctMsg');
+                    const missing= [];
+
+                    if (name.length > 16)
+                        missing.push('16- character maximum.');
+
+                    if (name.length < 3)
+                        missing.push("Username cannot be less than 3 characters.")
+                    
+                    // this code below is incorrect
+                    // if (!name.startsWithLetter)
+                    //     missing.push("Username must start with a letter.")
+
+                    // this is the correct code to check if name starts with letter
+                    if (!/^[a-zA-Z]/.test(name)) // ensures the first letter matches the required pattern with regex check
+                        missing.push("Username must start with a letter.");
+
+                    // remember to use .innerHtml when using html tags like <br>
+                    feedbackMsg.innerHTML= "Username requirements: " + missing.join("<br>"); 
+                    });
+
+                //  nested func for like feedback on username criteria
+                document.getElementById('password').addEventListener('input', function() {
+                    console.log('user is typing in password input');
+                    let password= this.value;
+                    let feedbackMsg=document.getElementById('acctMsg');
+                    const missing= [];
+
+                    if (password.length < 8)
+                        missing.push('8- character minimum');
+                    if (password.length > 16)
+                        missing.push('16- character maximum')
+
+                    let hasLower= /[a-z]/.test(password);
+                    if (!hasLower)
+                        missing.push('missing lower-case letter');
+
+                    let hasUpper= /[A-Z]/.test(password);
+                    if (!hasUpper)
+                        missing.push('missin upper-case letter');
+
+                    let hasNumber= /[0-9]/.test(password);
+                    if (!hasNumber)
+                        missing.push('missing number');
+                    
+                    let hasSpecial= /[$%&*!@#]/.test(password);
+                    if (!hasSpecial)
+                        missing.push('missing special character');
+
+                    // remember to use .innerHtml when using html tags like <br>
+                    feedbackMsg.innerHTML= "Password requirements: " + missing.join("<br>");
+                    });
+
+                //  username checks
+                if (username.length < 3) {
+                    hints.push("Username is too short. Cannot be less than 3 characters. ");
+                }
+                if (username.length > 16) {
+                    hints.push("Username is too long. Cannot be more than 16 characters. ");
+                }
+                if (!usernamePattern.test(username)) {
+                    hints.push(
+                    "Invalid username format detected. <br>" +
+                    "Username requirements: begin with a letter, and can only containn letters, numbers, and underscores. ");
+                };
+
+                //  password checks
+                if (!passwordPattern.test(password)) {
+                    hints.push(
+                    "Invalid password format detected (Example: PassWord#007).<br> " +
+                    "Password requirements:  At least one lowercase letter, at least one uppercase letter, " +
+                    "at least one digit, at least one special character and must be between 8 and 16 characters. "
+                    );
+                }
+
+                //  username/password relationship checks
+                if (username && password && username === password)
+                    hints.push("Username and password cannot be the same. ");
+                if (username && password && username.includes(password))
+                    hints.push("Username cannot contain your full email address. ");
+
+                //  output logic
+                if (hints.length < 1) {
+                    console.log("Hints:", hints);
+                    document.getElementById('acctMsg').innerText= "Account registration is not active yet. Logging data in console...";
+                    acctData.push(username, password);
+                    console.log(acctData);
+                 } else {
+                    document.getElementById("acctMsg").innerHTML= hints.join("<br>");
+                    console.log("Hints:", hints);
+                    return; //  blocks logic until valid
+                }
+                //  storage of account data
+                console.log("Account created" + "\nUsername:" + acctData[0] + "\nPassword:" + acctData[1]);
             });
 
     </script>
-
     
 </body>
 <footer>
