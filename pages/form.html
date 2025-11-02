@@ -153,17 +153,20 @@
                     id="userName"
                     type="text"
                     name="userName"
-                    minlength="8 characters minimum"
-                    maxlength="20 characters maximum"
-                    title="Username is not case-sensitive, can contain letters, numbers, and underscores."
+                    minlength="3 characters minimum"
+                    maxlength="16 characters maximum"
+                    pattern= "^[a-zA-Z][a-zA-Z0-9_]{2,15}$"
+                    title="Username is must begin with a letter, be between 3 - 16, and can only use letters,
+                    numbers, and underscores."
                 >
+
                 <label for="password">Password:</label>
                 <input
                     id="password"
                     type="password"
                     name="password"
                     minlength="8 characters minimum"
-                    pattern="/^"
+                    pattern= "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@.#$!%*?&])[A-Za-z\d@.#$!%*?&]{8,15}$""
                     title="Password must contain one upper-case, one lowercase, one number, and one special character."
                 >
             </fieldset>
@@ -330,16 +333,20 @@
                 feedbackMsg.innerText= "";
             });
 
-            //  username requirements: letters, numbers, and underscores
+            //  username requirements: letters, numbers, and underscores (between 3 and 16 chars)
             //  password requirements: min 8 chars, one upper, one lower, one number, and one special char
 
             //  username and password validtion func check
             document.getElementById('accountCreation').addEventListener('submit', function(event) {
                 event.preventDefault(); //  prevents form submission/reset
+                let username= document.getElementById("userName").value;
+                let password= document.getElementById('password').value;
+                let usernamePattern= /^[a-zA-Z][a-zA-Z0-9_]{2, 15}$/ // (john_Doe00)
+                let passwordPattern= /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@.#$!%*?&])[A-Za-z\d@.#$!%*?&]{8,15}$/ //(PassWord007#)
+
                 console.log("user is attempting account creation.");
                 document.getElementById('acctMsg').innerText= "Account registration is not ready yet."
-                let usernamePattern= "john_Doe00";
-                let passwordPattern= "PassWord007^";
+
                 console.log(username);
                 console.log(password);
             });
