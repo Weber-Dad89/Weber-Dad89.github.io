@@ -73,6 +73,29 @@
             align-self: center;
         }
 
+        #accountCreationContainer {
+            max-width: 500px;
+            margin: 2em auto;
+            padding: 1em;
+            border: 1px solid #3a2074;
+            background: #000000;
+            border-radius: 1.5em;
+        }
+
+        .accountCreation label,
+        .accountCreation input {
+            display: block;
+            margin-bottom: 0.6em;
+            /* To make sure that all the text fields have the same font settings */
+            font: 1em 'Electrolize';
+            color:  antiquewhite;
+            /* Uniform text field size */
+            width: max-content;
+            box-sizing: border-box;
+        }
+
+
+
 
     </style>
 </head>
@@ -89,7 +112,7 @@
         <input
             id="name"
             type="text"
-            name="userName"
+            name="name"
             pattern="[A-Za-z ]{2,30}"
             title="Your name must be between 2 and 50 characters, containing only letters and spaces."
             required
@@ -120,28 +143,32 @@
         <span id="invalidFormMessage" style="color: red;font-weight: normal;"></span>
     </form>
 
-    <form id="accountCreation" action="#" method="POST">
-        <fieldset id="createAccount" class="accountCreation">
-            <label for="userName">Username:</label>
-            <input
-                id="userName"
-                type="text"
-                name="userName"
-                minlength="8 characters minimum"
-                maxlength="20 characters maximum"
-                title="Username is not case-sensitive, can contain letters, numbers, and underscores."
-            >
-            <label for="password">Password:</label>
-            <input
-                id="password"
-                type="password"
-                name="password"
-                minlength="8 characters minimum"
-                pattern="/^"
-                title="Password must contain one upper-case, one lowercase, one number, and one special character."
-            >
-        </fieldset>
-    </form>
+    <!--    Account creation container for user registration info   -->
+    <div id="accountCreationContainer">
+        <h3>Create Your Account</h3>
+        <form id="accountCreation" action="#" method="POST">
+            <fieldset id="createAccount" class="accountCreation">
+                <label for="userName">Username:</label>
+                <input
+                    id="userName"
+                    type="text"
+                    name="userName"
+                    minlength="8 characters minimum"
+                    maxlength="20 characters maximum"
+                    title="Username is not case-sensitive, can contain letters, numbers, and underscores."
+                >
+                <label for="password">Password:</label>
+                <input
+                    id="password"
+                    type="password"
+                    name="password"
+                    minlength="8 characters minimum"
+                    pattern="/^"
+                    title="Password must contain one upper-case, one lowercase, one number, and one special character."
+                >
+            </fieldset>
+        </form>
+    </div>
 
     <script>
 
@@ -214,10 +241,13 @@
             // clears fields after valid submission but keeps the valid message displayed to user
             this.reset();
         });
-            
-        //  30 char maximum, input of correct name using lower-case and, upper-case letter
+        
+        //  Validation checks to follow below   //
+        //  30 char maximum, input of correct name using one lower-case and, one upper-case letter
         //  checks that phone is entered correctly and no special characters in name
         // the EventListener will inform the user in real-time what is required when adding data to forms!!!
+
+        // TODO: use JS to perform validation checks on username and password inputs!!!
 
         // name validation func
         document.getElementById('name').addEventListener('input', function() {
