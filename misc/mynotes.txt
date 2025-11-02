@@ -8,7 +8,7 @@ Asssignment Notes and Tasks to Completion
     •   comment (done)
     •   use HTML attributes for validation (done)
 
-- Form fields (Username, phone, email) are correctly implement. (done)
+- Form fields (name, phone, email) are correctly implement. (done)
     •   employ real-time feedback by displaying decorated messages on the page (not alert or console) 
     •   checks to insure the input meets or fails to meet required criteria 
 
@@ -21,8 +21,9 @@ Asssignment Notes and Tasks to Completion
     •   sends the data to the sanitization function (done)
     •   ensure sanitized data is stored in variables or an array (done)
 
-- 
-    •   
+- TODO: add form fields for account creation (username and password)
+    •   both fields provide real-time feedback by displaying decorated messages on the page
+    •   indicate whether input meets or fails to meet the required criteria
 
 - 
 
