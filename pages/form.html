@@ -82,7 +82,7 @@
     <p class="sageText">Have something to say, enter information and leave a <strong>Comment</strong>
     below!</p>
 
-    <form id="commentForm" action="process.php" method="get">
+    <form id="commentForm" action="#" method="POST">
         <p id="inputLabels" class="inputBoxes">
 
         <label for="name">Name:</label>
@@ -145,9 +145,23 @@
                 errors.push("Email is required.");
             if (!message)
                 errors.push("Don't forget to enter your comment!");
-            if (name.includes(email))
-                errors.push("Email cannot be your user name.");
+            if (name && email && name === email)
+                errors.push("Email and name cannot be the same.")
+            if (name && email && name.includes(email))
+                errors.push("Name cannot contain your full email address.");
 
+                // nested func to sanitize data after input is received
+                function sanitizeHtmlSpecialChars(str) {
+                    if (typeof str !== 'string') {
+                        return str; //  returns as is, if not a string
+                    }
+                    //  replaces ampersand char, this is done first because '&' is part of other entities and needs to be handled before them
+                    return  str.replace(/&/g, '&amp;')  
+                                .replace(/</g, '&lt;')           //  replaces all occurences of the less-than sign
+                                .replace(/>/g, '&gt;')          //  replaces all occurences of the greater-than sign
+                                .replace(/"/g, '&quot;')         //  replaces all occurrences of the double quote
+                                .replace(/'/g, '&#039;')       //  replaces all occurrences of the single quote, using the numeric entity for single quotes
+                }
             //  one big check at the end if fields pass validation
             if (errors.length > 0) {
                 console.log("Invalid form, does not meet requirements.");
@@ -160,8 +174,13 @@
                 return;
             }
 
-            // Validated data stored in an array
-            let formData= [name, phone, email, message];
+            // Validated data is sanitized and stored in an array for logging
+            let formData= [
+                sanitizeHtmlSpecialChars(name),
+                sanitizeHtmlSpecialChars(phone), 
+                sanitizeHtmlSpecialChars(email),
+                sanitizeHtmlSpecialChars(message)
+            ];
             console.log("Valid Data Accepted: ", formData)
             invalidFormMessage.style.color= "white";
             invalidFormMessage.style.fontWeight= "bold";
@@ -194,7 +213,6 @@
             if (!hasUpper)
                 missing.push('Upper-case letter');
 
-            // TODO: Fix this conditional statement
             let hasNumber= /[0-9]/.test(name);
             if (hasNumber) {
                 missing.push('cannot contain numbers');
@@ -212,7 +230,7 @@
             console.log('user is typing in phone input');
             let phone= this.value;
             let feedbackMsg=document.getElementById('feedbackMsg');
-            const pattern= /^[1-9]\d{2}-\d{3}-\d{4}$/;        //  regex expression matching format: 123-456-7890
+            const pattern= /^[1-9]\d{2}-\d{3}-\d{4}$/;        //  regex ('regular expression') expression matching format: 123-456-7890
             const missing= [];
 
             let hasTel= /[0-9]/.test(phone);
@@ -260,4 +278,7 @@
 
     
 </body>
+<footer>
+    <a href="/index.html" id="sagePage">Return to homepage.</a>
+</footer>
 </html>
