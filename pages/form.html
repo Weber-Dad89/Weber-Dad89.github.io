@@ -87,8 +87,8 @@
             display: block;
             margin-bottom: 0.6em;
             /* To make sure that all the text fields have the same font settings */
-            font: 1em 'Electrolize';
-            color:  antiquewhite;
+            font: 24px 'Electrolize';
+            color:  rgb(134, 77, 2);
             /* Uniform text field size */
             width: max-content;
             box-sizing: border-box;
@@ -138,7 +138,7 @@
         <textarea id="msg" type="text" name="userMsg" rows="5" cols="40" placeholder="Type here..."></textarea>
 
         <span id="feedbackMsg" style="color: yellow;font-weight: normal;">Fill the data and click the button when finished.</span><br>
-            <button type="submit">Send Your Message</button><br>
+            <button id="commentFormBtn" type="submit">Send Me Your Message</button><br>
 
         <span id="invalidFormMessage" style="color: red;font-weight: normal;"></span>
     </form>
@@ -167,6 +167,8 @@
                     title="Password must contain one upper-case, one lowercase, one number, and one special character."
                 >
             </fieldset>
+            <span id="acctMsg" style="color: rgb(146, 123, 9);font-weight: bold;">Enter username and password to create an account</span><br>
+            <button id="accountBtn" type="submit" onclick="accountCreateCheck()">Register Account</button><br>
         </form>
     </div>
 
@@ -311,6 +313,7 @@
             } else {
                 feedbackMsg.innerText= "";
             }
+        });
 
             //  comment validation func
         document.getElementById('msg').addEventListener('input', function() {
@@ -326,7 +329,19 @@
             else 
                 feedbackMsg.innerText= "";
             });
-        });
+
+            //  username and password validtion func check
+            function accountCreateCheck() {
+                this.preventDefault();
+                let usernamePattern= "";
+                let passwordPattern= "";
+                console.log(username);
+                console.log(password);
+                addEventListener('input', function() {
+                    console.log('user is working on account creation.')
+
+                });
+            };
 
     </script>
 
