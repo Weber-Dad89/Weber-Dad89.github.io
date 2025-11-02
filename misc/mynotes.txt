@@ -10,7 +10,7 @@ Asssignment Notes and Tasks to Completion
 
 - Form fields (name, phone, email) are correctly implement. (done)
     •   employ real-time feedback by displaying decorated messages on the page (not alert or console) 
-    •   checks to insure the input meets or fails to meet required criteria 
+    •   checks to insure the input meets or fails to meet required criteria (done)
 
 - Implement sanitization function in JS to remove 5 bad characters (<, >, &, ", ') done
     •   Replace characters with equivalent correct characters (&lt;, &gt;, &amp;, &apos;)
@@ -22,7 +22,8 @@ Asssignment Notes and Tasks to Completion
     •   ensure sanitized data is stored in variables or an array (done)
 
 - TODO: add form fields for account creation (username and password)
-    •   both fields provide real-time feedback by displaying decorated messages on the page
+    •   both fields provide real-time feedback
+    •   displaying decorated messages on the page
     •   indicate whether input meets or fails to meet the required criteria
 
 - 

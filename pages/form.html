@@ -168,7 +168,7 @@
                 >
             </fieldset>
             <span id="acctMsg" style="color: rgb(146, 123, 9);font-weight: bold;">Enter username and password to create an account</span><br>
-            <button id="accountBtn" type="submit" onclick="accountCreateCheck()">Register Account</button><br>
+            <button id="accountBtn" type="submit" >Register Account</button><br>
         </form>
     </div>
 
@@ -330,18 +330,19 @@
                 feedbackMsg.innerText= "";
             });
 
+            //  username requirements: letters, numbers, and underscores
+            //  password requirements: min 8 chars, one upper, one lower, one number, and one special char
+
             //  username and password validtion func check
-            function accountCreateCheck() {
-                this.preventDefault();
-                let usernamePattern= "";
-                let passwordPattern= "";
+            document.getElementById('accountCreation').addEventListener('submit', function(event) {
+                event.preventDefault(); //  prevents form submission/reset
+                console.log("user is attempting account creation.");
+                document.getElementById('acctMsg').innerText= "Account registration is not ready yet."
+                let usernamePattern= "john_Doe00";
+                let passwordPattern= "PassWord007^";
                 console.log(username);
                 console.log(password);
-                addEventListener('input', function() {
-                    console.log('user is working on account creation.')
-
-                });
-            };
+            });
 
     </script>
 
