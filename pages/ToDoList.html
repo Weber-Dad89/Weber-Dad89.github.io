@@ -4,9 +4,92 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo List</title>
+    <script src="/scripts/TodoPage.js"></script>
 </head>
-<body>
+<body onload="inspireQuote()">
+
+    <h1>Todo List</h1>
+
+    <p>Use this page to add and remove tasks to your Todo List.</p><hr>
+    <p id="hello">Hello <span id="currentUser"></span>!</p>
+    <button onclick="removeCookie()">Sign Out Here</button>
+
+    <p><span id="jokeAPI" src="https://github.com/lukePeavey/quotable">Jokes go here.</span></p>
+
+    <h2>Sign In</h2><br>
+
+    <label for="userName">Username</label>
+    <input
+        id="userName"
+        type="text"
+        name="userName"
+        minlength="3 characters minimum"
+        maxlength="16 characters maximum"
+        pattern= "^[a-zA-Z0-9_]{3,16}+$"
+        title="Username can only contain numbers, letters, and underscores. (Ex: joe_Smoe22)"
+        ></input><br><br>
+    <button onclick="signIn()">Sign In</button>
+    <hr>
+
+
+    <h2>Task List Creator</h2><br>
+    <form id="taskForm" name="taskForm" METHOD=POST ACTION="#">
+
+        <span id="feedbackMsg" style="color: red;font-weight: normal;"></span>
+        <label for="taskItem">Task Item:</label>
+        <input
+            id="taskItem"
+            type="text"
+            name="taskItem"
+            pattern="[A-Za-z0-9 !]{3,50}"
+            title="The input string must contain between 3 and 50 characters."
+            required
+            >
+                        
+            <button onclick="addItem()" id="addItemBtn" type="button">Add Item to List</button>
+            <button onclick="removeItem()" id="removeItemBtn" type="button">Remove Item from List</button>
+            <hr>
+
+            <h2>Your Task List</h2>
+            <p>Task List: <span id="taskList">No Tasks</span></p>
+            <p>Tasks Counter: <span id="taskCounter">0</span></p>
+            <button onclick="saveList()">Save List</button>
+
+            <div id="settings">
+                <br><hr>
+                <h3>Change Page Settings</h3>
+                <label class="switch">
+                    <button onclick="darkButtonToggle()" type="button" id="myBtnToggleDark">Click here to change to dark.</button>
+
+                    <button onclick="lightButtonToggle()" type="button" id="myBtnToggleLight">Click here to change to light.</button>
+                    <p>Current Setting: <span class="slider">Default</span></p>
+                </label>
+            </div>
+
+    </form>
     <script>
+       // GET /quotes/random
+
+       const itemList=[];
+
+       // Add item func
+       function addItem() {
+            let msg= document.getElementById("feedbackMsg");
+            const item= document.getElementById("taskItem");
+            
+            //  checkValidity() - when called on an HTML element, func evaluates all applicable constraint validation rules for that element. (rules can be intrinsic such as: required, type="", minlength, pattern)
+            if (item.checkValidity()) { // returns true if the element's value meets all applied validation rules
+                itemList.push(item.value);
+                console.log(itemList);
+                msg.textContent= "Item Added!";
+                }   else {msg.textContent="Invalid input."};
+
+            //let updatedTaskList= document.getElementById("taskList");
+            //itemList= updatedTaskList ? updatedTaskList + ", " : "";
+            //updatedTaskList += item.value; // adds item to list on page
+            document.getElementById("taskList").textContent= itemList.join(", ");
+            return;
+        }
 
 
 
