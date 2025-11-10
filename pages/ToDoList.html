@@ -6,26 +6,26 @@
     <title>Todo List</title>
     <script src="/scripts/TodoPage.js"></script>
 </head>
-<body onload="inspireQuote()">
+<body>
 
     <h1>Todo List</h1>
 
     <p>Use this page to add and remove tasks to your Todo List.</p><hr>
     <p id="hello">Hello <span id="currentUser"></span>!</p>
-    <button onclick="removeCookie()">Sign Out Here</button>
+    <button onclick="signOut()">Sign Out Here</button>
 
-    <p><span id="jokeAPI" src="https://github.com/lukePeavey/quotable">Jokes go here.</span></p>
+    <p><span id="quoteAPI">Quotes go here.</span></p>
 
     <h2>Sign In</h2><br>
 
-    <label for="userName">Username</label>
+    <label for="username">Username</label>
     <input
-        id="userName"
+        id="username"
         type="text"
-        name="userName"
+        name="username"
         minlength="3 characters minimum"
         maxlength="16 characters maximum"
-        pattern= "^[a-zA-Z0-9_]{3,16}+$"
+        pattern= "^[a-zA-Z0-9_]{3,16}$"
         title="Username can only contain numbers, letters, and underscores. (Ex: joe_Smoe22)"
         ></input><br><br>
     <button onclick="signIn()">Sign In</button>
@@ -41,59 +41,267 @@
             id="taskItem"
             type="text"
             name="taskItem"
-            pattern="[A-Za-z0-9 !]{3,50}"
-            title="The input string must contain between 3 and 50 characters."
+            pattern="[A-Za-z0-9 !]{1,50}"
+            title="The input string must contain between 1 and 50 characters."
             required
-            >
-                        
+            >     
             <button onclick="addItem()" id="addItemBtn" type="button">Add Item to List</button>
             <button onclick="removeItem()" id="removeItemBtn" type="button">Remove Item from List</button>
+            <p>To remove an item, input the task number. (Ex: '1')</p>
             <hr>
 
-            <h2>Your Task List</h2>
-            <p>Task List: <span id="taskList">No Tasks</span></p>
-            <p>Tasks Counter: <span id="taskCounter">0</span></p>
-            <button onclick="saveList()">Save List</button>
+        <h2>Your Task List</h2>
+        <p>Task List: <br><span id="taskList">No Tasks</span></p>
+        <p>Tasks Counter: <span id="taskCounter">0</span></p>
+        <button onclick="saveTaskList()" type="button" id="saveTaskListBtn">Save List</button>
+        <button onclick="clearTaskList()" type="button" id="clearTaskListBtn">Clear Task List</button>
 
-            <div id="settings">
-                <br><hr>
-                <h3>Change Page Settings</h3>
-                <label class="switch">
-                    <button onclick="darkButtonToggle()" type="button" id="myBtnToggleDark">Click here to change to dark.</button>
+        <div id="settings" style="align-items: center;">
+            <br><hr>
+            <h3>Change Page Settings</h3>
+            <label for="settingsPref">Select your preferred setting:<br>
+                <button onclick="darkButtonToggle()" type="button" id="myBtnToggleDark">Click here to change to dark</button>
 
-                    <button onclick="lightButtonToggle()" type="button" id="myBtnToggleLight">Click here to change to light.</button>
-                    <p>Current Setting: <span class="slider">Default</span></p>
-                </label>
-            </div>
+                <button onclick="lightButtonToggle()" type="button" id="myBtnToggleLight">Click here to change to light</button>
+                <p>Current Setting: <span id="currentColor">Default</span></p>
+            </label>
+        </div>
 
     </form>
     <script>
-       // GET /quotes/random
 
-       const itemList=[];
+        //  Get cookie Function
+        function getCookie(name) {
+            const cookies= document.cookie.split("; "); //  creates an array of cookies separated by ;
+                for (let i=0; i < cookies.length; i++) {
+                    let cookie= cookies[i].trim();
+                    // checking if the cookie starts with name, then give me everything after that
+                    if (cookie.startsWith(name + '=')) 
+                        return (cookie.substring(name.length + 1));
+                }
+        }
+
+        // Remove cookies function
+        function signOut() {
+            // Removes cookies below
+            document.cookie= 'username= ; expires=Sun, 01 Jan 1970 00:00:00 UTC; path=/;';
+            document.cookie= "setDate= ; expires=Sun, 01 Jan 1970 00:00:00 UTC; path=/;";
+            document.cookie= "expDate=  ; expires=Sun, 01 Jan 1970 00:00:00 UTC; path=/;";
+            document.cookie= "backgroundColor= ; expires=Sun, 01 Jan 1970 00:00:00 UTC; path=/;"
+            location.reload(true); // makes it so when you reload the page it updates the information
+            
+        }
+
+        //  setting up cookie for storing username within the domain (follows the requirements set by sign-in input)
+        function signIn() {
+            let username= document.getElementById('username');
+            clearTaskList();
+            if (!username.checkValidity()) {
+                alert('Invalid username');
+                return;
+            }
+
+            //  Setting time of cookie expiration
+            let date= new Date();   //  using javascript object to set the date
+            let currentDate= date.getTime();
+            
+            // Calculates the number of milliseconds in 365 days
+            let futureDate= currentDate + (365 * 24 * 60 * 60 * 1000); // Add 365 days in miliseconds (365 days * 24 hours/day * 60 seconds/min * 1000 ms/second )
+            date.setTime(futureDate);
+            console.log(date);
+
+            let expires= "expires=" + date.toUTCString();   //  assigning the expiration date for the cookie to expire in 1 year.
+            //alert(expires);
+            
+            //   Store current set date and expiration date as cookie
+            document.cookie= "username=" + username.value + "; " + expires + "; " + "; path=/";
+            document.cookie= "setDate=" + currentDate + "; " + expires + "; " + "; path=/";
+            document.cookie= "expDate=" + futureDate + "; " + expires + "; " + "; path=/";
+            // have to use document.cookie evertime we want to add a cookie
+            
+            location.reload(true); // sets up for next time we use the page itll show the saved data
+            }
+        
+        let currentUser = null;
+        let setDate= null;
+        let expDate= null;
+        let backgroundColor= null;
+        let colorName= null;
+        // function is called when the page loads
+        function loadUser() {
+            // Retrieving stored cookies to do things
+            currentUser= getCookie("username");
+            setDate= getCookie("setDate");
+            expDate= getCookie("expDate");
+            backgroundColor= getCookie("backgroundColor");
+            colorName= getCookie("colorName");
+
+            // To display cookie dates in console as a readable date
+            // Cookie values are strings and after being retrieved they need to be converted to date objects
+            let setDateObj= new Date(Number(setDate)); // converts setDate string back to a number then to JS obj
+            let expDateObj= new Date(Number(expDate)); // // converts expDate string back to a number then to JS obj
+            
+            // Now we can display the dates in the console properly!!
+            console.log("Setup date: " + setDateObj.toUTCString()); // Output: Current time
+            console.log("Expiration date: " + expDateObj.toUTCString()); // Output: Date is 365 days from now
+
+            // if currentUser is a thing, then keep the current user as the current user, otherwise set the current user= "Guest"
+            currentUser= currentUser ? currentUser : "Guest";
+            document.getElementById("currentUser").textContent= currentUser;
+            document.getElementById("currentColor").innerHTML= 
+            console.log("Current user: " + currentUser);
+
+            // Loading of user specific settings and populates their task list to the page
+            if (currentUser !== "Guest") {
+                let settingsPref= localStorage.getItem(currentUser + "backgroundColor");
+                if (settingsPref) {
+                    document.body.style.backgroundColor= settingsPref;
+                }
+                else {
+                    document.body.style.backgroundColor= "#a0d2eb";
+                    document.getElementById("currentColor").innerHTML= "Ice Cold (Default)";
+                }
+                let colorName= localStorage.getItem(currentUser + "colorName");
+                document.getElementById("currentColor").innerHTML= colorName ? colorName: "Ice Cold (Default)";
+
+                let savedTaskList = localStorage.getItem("taskItemList"); // if the user is not a guest, we will load their task list
+                savedTaskList= savedTaskList ? JSON.parse(savedTaskList) : []; // if the task list exist we will retrieve it, if not it will be an empty array
+                document.getElementById("taskList").innerHTML= taskItemList;
+            } else {
+                document.getElementById('currentColor').innerHTML="Highlight Green";
+                document.body.style.backgroundColor= "#59ce8f"; // When user is "Guest", set page color to Highlight Green
+            }
+        }
+
+        // variable of empty array to store all task items
+        let taskItemList=[];
+
+        //  checkValidity() - when called on an HTML element, func evaluates all applicable constraint validation rules for that element. 
+        // (rules can be intrinsic such as: required, type="", minlength, pattern)
 
        // Add item func
        function addItem() {
             let msg= document.getElementById("feedbackMsg");
             const item= document.getElementById("taskItem");
-            
-            //  checkValidity() - when called on an HTML element, func evaluates all applicable constraint validation rules for that element. (rules can be intrinsic such as: required, type="", minlength, pattern)
-            if (item.checkValidity()) { // returns true if the element's value meets all applied validation rules
-                itemList.push(item.value);
-                console.log(itemList);
-                msg.textContent= "Item Added!";
-                }   else {msg.textContent="Invalid input."};
 
-            //let updatedTaskList= document.getElementById("taskList");
-            //itemList= updatedTaskList ? updatedTaskList + ", " : "";
-            //updatedTaskList += item.value; // adds item to list on page
-            document.getElementById("taskList").textContent= itemList.join(", ");
+            if (item.checkValidity()) { // returns true if the element's value meets all applied validation rules
+                let itemIndex= taskItemList.length + 1; // using number to indicate indices, starting at 1
+                let taskObj= {};
+                taskObj[itemIndex] = item.value;
+                taskItemList.push(taskObj); // adds task obj to array 
+                console.log(taskObj);
+                console.log(taskItemList);
+                msg.textContent= "Item Added!";
+                } else {msg.textContent="Invalid input."};
+
+                // Display the list as key:value pairs
+                let display= "";
+                for (let i= 0; i < taskItemList.length; i++) {
+                    let key= Object.keys(taskItemList[i])[0]; // gets the key of the object in the array
+                    let value= taskItemList[i][key];
+                    display += key + ": " + value + "<br>"; // (Ex: 1: Do chores)
+                }
+                document.getElementById("taskList").innerHTML= display;
+                item.value= ""; // clears out the task after item is added
+                return;
+        }
+
+        // Function to reindex objects 
+        function reIndexTaskList() {
+            const organizedList= [];
+            for (let i= 0; i < taskItemList.length; i++) {
+                let taskObj= {};
+                taskObj[i + 1]= Object.values(taskItemList[i][0]); // organizes keys numerically
+                organizedList.push(taskObj);
+            }
+            taskItemList= organizedList;
+        }
+        
+        // Remove item func
+       function removeItem() {
+            let msg= document.getElementById("feedbackMsg");
+            let itemInput= document.getElementById("taskItem");
+            if (itemInput.checkValidity()) { // returns true if the element's value meets all applied validation rules
+                let index= Number(itemInput.value) -1; // using number to indicate indices in the array
+                if (index >=0 && index < taskItemList.length) {
+                    taskItemList.splice(index, 1);
+
+                    reIndexTaskList(); // updates keys to be in the correct order
+                    msg.textContent= "Task removed!";
+                    console.log(taskItemList);
+                } else {msg.textContent="Task not found..."};
+            } 
+
+            // Display the list as key:value pairs
+            let display= "";
+            for (let i= 0; i < taskItemList.length; i++) {
+                let key= Object.keys(taskItemList[i])[0];
+                let value= taskItemList[i][key];
+                display += key + ": " + value + "<br>";
+            }
+            document.getElementById("taskList").innerHTML= display;
+            itemInput.value= ""; // clears out the input after task is removed
             return;
         }
 
+        // Saving the task list
+        function saveTaskList() {
+            if (!currentUser || currentUser === "Guest") {
+                alert("Must be signed in to save task list.")
+                return;
+            }
+            if (taskItemList.length === 0) {
+                alert("Cannont save an empty list.")
+                return;
+            }
+            localStorage.setItem("taskItemList", JSON.stringify(taskItemList)); // will store the tasklist as an array of objects as {index: task}
+            console.log("Saved Task List: ", taskItemList);
+        }
+
+        // Clearing out the task list
+        function clearTaskList() {
+            sessionStorage.clear(); // will clear out the sessions settings
+            location.reload(true); // reloades the page to provide updates
+        }
+
+        function darkButtonToggle() {
+            document.body.style.backgroundColor= "#a28089";
+            document.getElementById("currentColor").innerHTML= "Heavy Purple";
+            let color= "Heavy Purple";
+            // Gets computed style of the body element
+            const bodyStyleColor= window.getComputedStyle(document.body);
+            // Retrieves the background-color property
+            let backgroundColor= bodyStyleColor.getPropertyValue("background-color");
+            // Display the backgroundColor in the console
+            console.log("Background color: " + color, backgroundColor);
+
+            if (currentUser) {
+                localStorage.setItem(currentUser + "backgroundColor", backgroundColor);
+                localStorage.setItem(currentUser + "colorName", color);
+                document.cookie= "colorName=" + color + "; " + "expires=Sun, 01 Jan 2026 12:00:00 UTC" + "; path=/";
+            }
+        }
+
+        function lightButtonToggle() {
+            document.body.style.backgroundColor= "#ffa8B6";
+            document.getElementById("currentColor").innerHTML= "Pink Sand";
+            let color= "Pink Sand";
+            // Gets computed style of the body element
+            const bodyStyleColor= window.getComputedStyle(document.body);
+            // Retrieves the background-color property
+            let backgroundColor= bodyStyleColor.getPropertyValue("background-color");
+            // Display the backgroundColor in the console
+            console.log("Background color: " + color, backgroundColor);
+
+            if (currentUser) {
+                localStorage.setItem(currentUser + "backgroundColor", backgroundColor);
+                localStorage.setItem(currentUser + "colorName", color);
+                document.cookie= "colorName=" + color + "; " + "expires=Sun, 01 Jan 2026 12:00:00 UTC" + "; path=/";
+            }
+        }
 
 
-
+    loadUser();
     </script>
 </body>
 </html>

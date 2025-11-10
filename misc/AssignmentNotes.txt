@@ -4,8 +4,8 @@ Asssignment Notes and Tasks to Completion
 - To-do list with functionality using local storage
     •   Build the HTML form with input field and buttons (done)
     •   Ability to add a task, added to page (done)
-    •   Ability to remove a task, removed from page
-    •   Tasks stored as JSON in localStorage
+    •   Ability to remove a task, removed from pag (done)
+    •   Tasks stored as JSON in localStorage (done)
     •   Tasks retrieved and rendered on page load
 
 - The number of items added to the page is tracked in sessionStorage.
@@ -13,10 +13,10 @@ Asssignment Notes and Tasks to Completion
     •   
 
 - Implement theme settings on page (light/dark mode)
-    •   Create a button or toggle for changing the settings
-    •   Ensure the theme persists using cookies
+    •   Create a button or toggle for changing the settings (done)
+    •   Ensure the theme persists using cookies (done)
 
-- Implement REST API's Integration (Representational Staate Transfer Application Programming Interface)
+- Implement REST API's Integration (Representational State Transfer Application Programming Interface)
     •   fetch and display a motivational quote, joke, or other piece of information (image)
     •   Use async/await and Promises for asynchronous programming
     •   Display the information on page load or when a button is clicked
