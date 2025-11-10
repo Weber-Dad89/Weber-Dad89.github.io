@@ -18,9 +18,9 @@ Asssignment Notes and Tasks to Completion
 
 - Implement REST API's Integration (Representational State Transfer Application Programming Interface)
     •   fetch and display a motivational quote, joke, or other piece of information (image)
-    •   Use async/await and Promises for asynchronous programming
-    •   Display the information on page load or when a button is clicked
-    •   Handle errors by displaying a fallback message
+    •   Use async/await and Promises for asynchronous programming (somewhat done)
+    •   Display the information on page load or when a button is clicked (done)
+    •   Handle errors by displaying a fallback message (done)
 
 - 
     •   

@@ -10,11 +10,14 @@
 
     <h1>Todo List</h1>
 
-    <p>Use this page to add and remove tasks to your Todo List.</p><hr>
-    <p id="hello">Hello <span id="currentUser"></span>!</p>
-    <button onclick="signOut()">Sign Out Here</button>
+    <p></p><hr>
+    <p id="hello">Hello <span id="currentUser"></span>! <br>Use this page to add and remove tasks to your Todo List.</p><br>
 
-    <p><span id="quoteAPI">Quotes go here.</span></p>
+    <div id="quoteContent">
+    <h4>Motivation For The Day.</h4>
+    <p><span id="randomQuote">Quotes go here.</span></p>
+    <p><span id="quoteAuthor">Authors go here</span></p>
+    </div>
 
     <h2>Sign In</h2><br>
 
@@ -29,6 +32,7 @@
         title="Username can only contain numbers, letters, and underscores. (Ex: joe_Smoe22)"
         ></input><br><br>
     <button onclick="signIn()">Sign In</button>
+    <button onclick="signOut()">Sign Out Here</button>
     <hr>
 
 
@@ -186,7 +190,7 @@
                 // organizes keys numerically by setting keys index + 1 in order to extract the tasks from each obj
                 taskObj[i + 1]= Object.values(taskItemList[i])[0]; 
                 organizedList.push(taskObj);
-                console.log("Organized List: " + organizedList);
+                //console.log("Organized List: " + organizedList);
             }
             taskItemList= organizedList; // updates the current task list with the new organized list!!
         }
@@ -221,7 +225,7 @@
                 taskObj[itemIndex] = item.value; // now we'll store the task as a value with the item's index as the key
                 taskItemList.push(taskObj); // adds task obj to array 
                 console.log(taskObj);
-                console.log(taskItemList);
+                //console.log(taskItemList);
                 msg.textContent= "Item Added!";
                 } else {msg.textContent="Invalid input."};
                 item.value= ""; // clears out the value input after item is added
@@ -239,7 +243,7 @@
                     taskItemList.splice(index, 1);
                     reIndexTaskList(); // updates keys to be in the correct order (better for UI as well as item removal)
                     msg.textContent= "Task removed!";
-                    console.log(taskItemList);
+                    //console.log(taskItemList);
                 } else {msg.textContent="Task not found..."};
             }
             itemInput.value=""; // clears out the key input after task is removed
