@@ -1,15 +1,15 @@
 Asssignment Notes and Tasks to Completion 
-* Functional link to webpage and portfolio site * ()
+* Functional link to webpage and portfolio site * (done)
 
 - To-do list with functionality using local storage
     •   Build the HTML form with input field and buttons (done)
     •   Ability to add a task, added to page (done)
     •   Ability to remove a task, removed from pag (done)
     •   Tasks stored as JSON in localStorage (done)
-    •   Tasks retrieved and rendered on page load
+    •   Tasks retrieved and rendered on page load (done)
 
 - The number of items added to the page is tracked in sessionStorage.
-    •   number of items updates dynamically on the page
+    •   number of items updates dynamically on the page (done)
     •   
 
 - Implement theme settings on page (light/dark mode)
