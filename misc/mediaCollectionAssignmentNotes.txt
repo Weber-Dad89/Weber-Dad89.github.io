@@ -1,22 +1,22 @@
 Asssignment Notes and Tasks to Completion 
 * Functional link to webpage and portfolio site * ()
 
-- Create pseudo-data in JSON format (Setup)
+- Create pseudo-data in JSON format (Setup) (done)
     •   ensure media item has at least 3 attributes that represent the media item (done)
-    •   provide a thumbnail image of each item
-    •   define a string containing the JSON-formatted fake data (multiple instances of media type)
-    •   JSON data must include at least 3 instances, with valid values for class attributes
+    •   provide a thumbnail image of each item (done)
+    •   define a string containing the JSON-formatted fake data (multiple instances of media type) (done)
+    •   JSON data must include at least 3 instances, with valid values for class attributes (done)
     •   
 
 - Create a JS class to represent a single media item
     •    Class must include
         -   3 attributes that correspond to the JSON data (done)
         -   image attribute to hold relative file path to an image of the media item (done)
-        -   encapulation using private variables
-        -   getter and setter methods
-            1.   employ at least one validation rule
+        -   encapulation using private variables with '#'
+        -   getter and setter methods (done)
+            1.   employ at least one validation rule (done)
         -   have at least two instance methods:
-            1.  one method must return a string representaion of the object
+            1.  one method must return a string representaion of the object (done)
             2.  one method must generate and return an HTML element displaying the media item on the page
     •   Parse the JSON string created in Part 1 and use it to generate at least three instances of the class
 
@@ -25,7 +25,7 @@ Asssignment Notes and Tasks to Completion
     •   class must include a method that creates an HTML element for each media item and adds it to the page
     •   media should display with at least 3 attributes and an image
         -   displayed elements must be generated dynamically using JS, not hardcoded in HTML
-        select a tontainer element in HTML, and use JS to append media items dynamically
+        select a container element in HTML, and use JS to append media items dynamically
 
 - 
     •   
