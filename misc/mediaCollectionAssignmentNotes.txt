@@ -2,7 +2,7 @@ Asssignment Notes and Tasks to Completion
 * Functional link to webpage and portfolio site * ()
 
 - Create pseudo-data in JSON format (Setup)
-    •   ensure media item has at least 3 attributes that represent the media item
+    •   ensure media item has at least 3 attributes that represent the media item (done)
     •   provide a thumbnail image of each item
     •   define a string containing the JSON-formatted fake data (multiple instances of media type)
     •   JSON data must include at least 3 instances, with valid values for class attributes
@@ -10,8 +10,8 @@ Asssignment Notes and Tasks to Completion
 
 - Create a JS class to represent a single media item
     •    Class must include
-        -   3 attributes that correspond to the JSON data
-        -   image attribute to hold relativce file path to an image of the media item
+        -   3 attributes that correspond to the JSON data (done)
+        -   image attribute to hold relative file path to an image of the media item (done)
         -   encapulation using private variables
         -   getter and setter methods
             1.   employ at least one validation rule
