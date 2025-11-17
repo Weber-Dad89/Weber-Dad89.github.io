@@ -1,9 +1,8 @@
+console.log("The mediaCollection JS file will dynamically update the HTML");
 // Game class with attributes
 class Game {
     // Private variables, defined with a '#', permitting only class access
     #platform;
-
-
 
     constructor(name, developer, genre, platform, imageFilePath) {
     // Properties that each object should have (properties are another term for key-value pairs in an object)
@@ -29,48 +28,92 @@ class Game {
         }
     }
     
-    displayGame() {
-        console.log(`${this.name} is a ${this.genre} on ${this.#platform}.`);
-        return this.name + " is a " + this.genre + " on " + this.#platform + ".";
+    displayGameDataInConsole() {
+        console.log(`${this.name} is a/an ${this.genre} game on ${this.#platform}.`);
+        return this.name + " is a " + this.genre + " game on " + this.#platform + ".";
     };
 
     showGameOnPage() {
-        const gameDisplayContainer= document.createElement("div");
-        gameDisplayContainer.id="gameDisplayContainer";
-        let gameName= this.name;
-        let gameDeveloper= this.developer;
-        let gameGenre= this.genre;
-        let gamePlatform= this.#platform;
-        let gameImage= this.image
+        // Child node game title inside gameDisplay container
+        const gameTitleHeading= document.createElement("p");
+        gameTitleHeading.classList.add("gameTitleHeadings");
+        gameTitleHeading.innerHTML= "<strong>Title:</strong> " + this.name;
+        //console.log(gameTitleHeading.textContent);
+        gameDisplayContainer.appendChild(gameTitleHeading);
 
+        // Child node game developer inside gameDisplay container
+        const gameDeveloper= document.createElement("p");
+        gameDeveloper.classList.add("gameDeveloperText");
+        gameDeveloper.textContent= "Developer: " + this.developer;
+        //console.log(gameDeveloper.textContent);
+        gameDisplayContainer.appendChild(gameDeveloper);
+
+        // Child node game genre inside gameDisplay container
+        const gameGenre= document.createElement("p");
+        gameGenre.textContent= "Genre: " + this.genre;
+        //console.log(gameGenre.outerText);
+        gameDisplayContainer.appendChild(gameGenre);
+
+        // Child node game platform inside gameDisplay container
+        const gamePlatform= document.createElement("p");
+        gamePlatform.textContent= "Platform: " + this.#platform;
+        //console.log(gamePlatform.outerText);
+        gameDisplayContainer.appendChild(gamePlatform);
+
+        // Child node game thumbnail image inside gameDisplay container
+        let gameImage= document.createElement("img");
+        gameImage.classList.add("gameThumbnails");
+        gameImage.src= this.image;
+        let lineBreak= document.createElement("hr");
+        lineBreak.classList.add("gradient");
+        //console.log(gameImage.src);
+        gameDisplayContainer.appendChild(gameImage);
+        gameDisplayContainer.appendChild(lineBreak);        
         
-        document.getElementById("gameDisplayContainer");
+        // Checks for html elements
+        //console.log(gameDisplayContainer.innerHTML);
     }
 }
 
 // Setting up instances using an array of objects containing media items
-const games= [
-    {"name": "Diablo 4", "developer": "Blizzard", "genre": "action RPG", "platform": "Xbox", "imageFilePath": "../images/mediaCollectionImageFolder/xboxGames/D4_graphic.jpg"},
-    {"name": "Demon Souls", "developer": "Japan Studio and Bluepoint Games", "genre": "action RPG", "platform": "PS5"},
-    {"name": "Mario Kart World", "developer": "Nintendo", "genre": "racing", "platform": "Nintendo Switch 2"},
-]
+// const games= [
+//     {"name": "Diablo 4", "developer": "Blizzard", "genre": "Action RPG", "platform": "Xbox", "imageFilePath": "../images/mediaCollectionImageFolder/xboxGames/D4_graphic.jpg"},
+//     {"name": "Demon Souls", "developer": "Japan Studio and Bluepoint Games", "genre": "Action RPG", "platform": "PS5"},
+//     {"name": "Mario Kart World", "developer": "Nintendo", "genre": "racing", "platform": "Nintendo Switch 2"},
+// ]
 // console.log(games);
 // // in order to access the values in the array; use the spread syntax (...) to pass the values as individual agruments
 // let diablo4Game= new Game(...Object.values(games[0]));
 // console.log(diablo4Game);
 // diablo4Game.displayGame();
 
+// Assigning the body to variable in order to append child nodes to created div container
+function buildDisplayContainer() {
+    const body= document.getElementById("mediaCollection");
+    let gameDisplayContainer= document.createElement("div");
+    gameDisplayContainer.id="gameDisplayContainer";
+    body.appendChild(gameDisplayContainer);
+}
+buildDisplayContainer();
 
 // Setting up instances individually
-let diablo4= new Game("Diablo 4", "Blizzard", "action RPG", "Xbox", "../images/mediaCollectionImageFolder/xboxGames/D4_graphic.jpg");
+let diablo4= new Game("Diablo 4", "Blizzard", "Action RPG", "Xbox", "../images/mediaCollectionImageFolder/xboxGames/D4_graphic.jpg");
 
-let demonSouls= new Game("Demon Souls", "Japan Studio and Bluepoint Games", "action RPG", "PS5", "../images/mediaCollectionImageFolder/ps5Games/DemonSouls_graphic.jpg");
+let demonSouls= new Game("Demon Souls", "Japan Studio and Bluepoint Games", "Action RPG", "PS5", "../images/mediaCollectionImageFolder/ps5Games/DemonSouls_graphic.jpg");
 
 let marioKartWorld= new Game("Mario Kart World", "Nintendo", "racing", "Nintendo Switch 2", "../images/mediaCollectionImageFolder/nintendoSwitchGames/marioKartWorld_graphic.jpg");
 
-console.log(diablo4);
-diablo4.displayGame();
+// Adding instances to array in JSON format (key:value) pairs
+let gameLibrary= [diablo4, demonSouls, marioKartWorld];
+console.log(gameLibrary);
 
+// Showcase game information in console and on page
+function showGameLibrary() {
+    for (Game of gameLibrary) {
+        Game.showGameOnPage();
+        Game.displayGameDataInConsole(); // invokes the method within the class to parse data as a string
+        console.log(Game); 
+    }
+}
+showGameLibrary();
 
-//console.log.displayItem(diablo4);
-//let diablo4= new Games(games[0])

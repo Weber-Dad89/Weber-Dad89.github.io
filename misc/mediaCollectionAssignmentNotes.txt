@@ -17,15 +17,15 @@ Asssignment Notes and Tasks to Completion
             1.   employ at least one validation rule (done)
         -   have at least two instance methods:
             1.  one method must return a string representaion of the object (done)
-            2.  one method must generate and return an HTML element displaying the media item on the page
-    •   Parse the JSON string created in Part 1 and use it to generate at least three instances of the class
+            2.  one method must generate and return an HTML element displaying the media item on the page (done)
+    •   Parse the JSON string created in Part 1 and use it to generate at least three instances of the class (done)
 
 - Display the media collection by using JS and DOM manipulation 
-    •   display current media collection dynamically
-    •   class must include a method that creates an HTML element for each media item and adds it to the page
-    •   media should display with at least 3 attributes and an image
-        -   displayed elements must be generated dynamically using JS, not hardcoded in HTML
-        select a container element in HTML, and use JS to append media items dynamically
+    •   display current media collection dynamically (done)
+    •   class must include a method that creates an HTML element for each media item and adds it to the page (done)
+    •   media should display with at least 3 attributes and an image (done)
+        -   displayed elements must be generated dynamically using JS, not hardcoded in HTML (done)
+            -   select a container element in HTML, and use JS to append media items dynamically (done)
 
 - 
     •   
