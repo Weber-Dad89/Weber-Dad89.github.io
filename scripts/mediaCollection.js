@@ -12,12 +12,11 @@ class Game {
     this.#platform= platform;
     this.image= imageFilePath;
     }
-    //  Methods: the functions the object has access to in order to do tasks
 
+    //  Methods: the functions the object has access to in order to do tasks
     get Platform() {
         return this.#platform;
     }
-
     // Validation rule: checks if platform declared is within the validPlatforms (strict equality)
     set Platform(platform) {
         const validPlatforms= ["Xbox", "PS5", "Nintendo Switch", "Steam", "Nintendo Switch 2"];
@@ -28,6 +27,7 @@ class Game {
         }
     }
     
+    // Parse JSON string data in order to show in the console
     displayGameDataInConsole() {
         console.log(`${this.name} is a/an ${this.genre} game on ${this.#platform}.`);
         return this.name + " is a " + this.genre + " game on " + this.#platform + ".";
@@ -75,17 +75,29 @@ class Game {
     }
 }
 
+
+// Setting up instances individually
+//let diablo4= new Game("Diablo 4", "Blizzard", "Action RPG", "Xbox", "../images/mediaCollectionImageFolder/xboxGames/D4_graphic.jpg");
+
+//let demonSouls= new Game("Demon Souls", "Japan Studio and Bluepoint Games", "Action RPG", "PS5", "../images/mediaCollectionImageFolder/ps5Games/DemonSouls_graphic.jpg");
+
+//let marioKartWorld= new Game("Mario Kart World", "Nintendo", "racing", "Nintendo Switch 2", "../images/mediaCollectionImageFolder/nintendoSwitchGames/marioKartWorld_graphic.jpg");
+
 // Setting up instances using an array of objects containing media items
-// const games= [
-//     {"name": "Diablo 4", "developer": "Blizzard", "genre": "Action RPG", "platform": "Xbox", "imageFilePath": "../images/mediaCollectionImageFolder/xboxGames/D4_graphic.jpg"},
-//     {"name": "Demon Souls", "developer": "Japan Studio and Bluepoint Games", "genre": "Action RPG", "platform": "PS5"},
-//     {"name": "Mario Kart World", "developer": "Nintendo", "genre": "racing", "platform": "Nintendo Switch 2"},
-// ]
-// console.log(games);
-// // in order to access the values in the array; use the spread syntax (...) to pass the values as individual agruments
-// let diablo4Game= new Game(...Object.values(games[0]));
-// console.log(diablo4Game);
-// diablo4Game.displayGame();
+const games= [
+    {"name": "Diablo 4", "developer": "Blizzard", "genre": "Action RPG", "platform": "Xbox", "imageFilePath": "../images/mediaCollectionImageFolder/xboxGames/D4_graphic.jpg"},
+    {"name": "Demon Souls", "developer": "Japan Studio and Bluepoint Games", "genre": "Action RPG", "platform": "PS5", "imageFilePath": "../images/mediaCollectionImageFolder/ps5Games/DemonSouls_graphic.jpg"},
+    {"name": "Mario Kart World", "developer": "Nintendo", "genre": "racing", "platform": "Nintendo Switch 2", "imageFilePath": "../images/mediaCollectionImageFolder/nintendoSwitchGames/marioKartWorld_graphic.jpg"},
+]
+
+// in order to access the values in the array; use the spread syntax (...) to pass the values as individual agruments to the class constructor
+let diablo4= new Game(...Object.values(games[0]));
+//console.log(diablo4);
+let demonSouls= new Game(...Object.values(games[1]));
+//console.log(demonSouls);
+let marioKartWorld= new Game(...Object.values(games[2]));
+//console.log(marioKartWorld);
+
 
 // Assigning the body to variable in order to append child nodes to created div container
 function buildDisplayContainer() {
@@ -96,12 +108,6 @@ function buildDisplayContainer() {
 }
 buildDisplayContainer();
 
-// Setting up instances individually
-let diablo4= new Game("Diablo 4", "Blizzard", "Action RPG", "Xbox", "../images/mediaCollectionImageFolder/xboxGames/D4_graphic.jpg");
-
-let demonSouls= new Game("Demon Souls", "Japan Studio and Bluepoint Games", "Action RPG", "PS5", "../images/mediaCollectionImageFolder/ps5Games/DemonSouls_graphic.jpg");
-
-let marioKartWorld= new Game("Mario Kart World", "Nintendo", "racing", "Nintendo Switch 2", "../images/mediaCollectionImageFolder/nintendoSwitchGames/marioKartWorld_graphic.jpg");
 
 // Adding instances to array in JSON format (key:value) pairs
 let gameLibrary= [diablo4, demonSouls, marioKartWorld];
@@ -111,7 +117,7 @@ console.log(gameLibrary);
 function showGameLibrary() {
     for (Game of gameLibrary) {
         Game.showGameOnPage();
-        Game.displayGameDataInConsole(); // invokes the method within the class to parse data as a string
+        Game.displayGameDataInConsole(); // invokes the method within the class to parse data as strings
         console.log(Game); 
     }
 }
