@@ -5,35 +5,45 @@ class Game {
     #platform;
 
     constructor(name, developer, genre, platform, imageFilePath) {
-    // Properties that each object should have (properties are another term for key-value pairs in an object)
-    this.name= name;
-    this.developer= developer;
-    this.genre= genre
-    this.#platform= platform;
-    this.image= imageFilePath;
+    
+    const data= this.#parseGameString(JSON.stringify({name, developer, genre, platform, imageFilePath})); // combines data into object and converts to JSON string for parsing
+
+    // Properties that each object should have (properties are another term for key-value pairs in an object). Assigned after parsing.
+    this.name= data.name;
+    this.developer= data.developer;
+    this.genre= data.genre
+    this.#platform= data.platform;
+    this.image= data.imageFilePath;
     }
 
     //  Methods: the functions the object has access to in order to do tasks
+
+    // Private method to parse JSON string data back to objects (abstraction)
+    #parseGameString(gameToString) {
+        return JSON.parse(gameToString);
+    }
+
     get Platform() {
         return this.#platform;
     }
-    // Validation rule: checks if platform declared is within the validPlatforms (strict equality)
+
+    // Validation rule: checks if platform declared is within the validPlatforms
     set Platform(platform) {
         const validPlatforms= ["Xbox", "PS5", "Nintendo Switch", "Steam", "Nintendo Switch 2"];
-        if (platform === validPlatforms) {
+        if (validPlatforms.includes(platform)) {
             this.#platform= platform;
         } else {
             throw new Error("Invalid platform! Platforms are: " + validPlatforms + "Platforms are case sensitive.");
         }
-    }
-    
-    // Parse JSON string data in order to show in the console
+    }        
+
     displayGameDataInConsole() {
         console.log(`${this.name} is a/an ${this.genre} game on ${this.#platform}.`);
         return this.name + " is a " + this.genre + " game on " + this.#platform + ".";
-    };
+    }
 
-    showGameOnPage() {
+    // DOM manipulation (passing in div container in order to append other elements for display)
+    showGamesOnPage(gameDisplayContainer) {
         // Child node game title inside gameDisplay container
         const gameTitleHeading= document.createElement("p");
         gameTitleHeading.classList.add("gameTitleHeadings");
@@ -75,28 +85,12 @@ class Game {
     }
 }
 
-
-// Setting up instances individually
-//let diablo4= new Game("Diablo 4", "Blizzard", "Action RPG", "Xbox", "../images/mediaCollectionImageFolder/xboxGames/D4_graphic.jpg");
-
-//let demonSouls= new Game("Demon Souls", "Japan Studio and Bluepoint Games", "Action RPG", "PS5", "../images/mediaCollectionImageFolder/ps5Games/DemonSouls_graphic.jpg");
-
-//let marioKartWorld= new Game("Mario Kart World", "Nintendo", "racing", "Nintendo Switch 2", "../images/mediaCollectionImageFolder/nintendoSwitchGames/marioKartWorld_graphic.jpg");
-
 // Setting up instances using an array of objects containing media items
 const games= [
     {"name": "Diablo 4", "developer": "Blizzard", "genre": "Action RPG", "platform": "Xbox", "imageFilePath": "../images/mediaCollectionImageFolder/xboxGames/D4_graphic.jpg"},
     {"name": "Demon Souls", "developer": "Japan Studio and Bluepoint Games", "genre": "Action RPG", "platform": "PS5", "imageFilePath": "../images/mediaCollectionImageFolder/ps5Games/DemonSouls_graphic.jpg"},
     {"name": "Mario Kart World", "developer": "Nintendo", "genre": "racing", "platform": "Nintendo Switch 2", "imageFilePath": "../images/mediaCollectionImageFolder/nintendoSwitchGames/marioKartWorld_graphic.jpg"},
 ]
-
-// in order to access the values in the array; use the spread syntax (...) to pass the values as individual agruments to the class constructor
-let diablo4= new Game(...Object.values(games[0]));
-//console.log(diablo4);
-let demonSouls= new Game(...Object.values(games[1]));
-//console.log(demonSouls);
-let marioKartWorld= new Game(...Object.values(games[2]));
-//console.log(marioKartWorld);
 
 
 // Assigning the body to variable in order to append child nodes to created div container
@@ -105,21 +99,24 @@ function buildDisplayContainer() {
     let gameDisplayContainer= document.createElement("div");
     gameDisplayContainer.id="gameDisplayContainer";
     body.appendChild(gameDisplayContainer);
+    return gameDisplayContainer;
 }
-buildDisplayContainer();
+const gameDisplay= buildDisplayContainer();
 
 
-// Adding instances to array in JSON format (key:value) pairs
-let gameLibrary= [diablo4, demonSouls, marioKartWorld];
-console.log(gameLibrary);
-
-// Showcase game information in console and on page
-function showGameLibrary() {
-    for (Game of gameLibrary) {
-        Game.showGameOnPage();
-        Game.displayGameDataInConsole(); // invokes the method within the class to parse data as strings
-        console.log(Game); 
-    }
+// Will create game instances from JS objects
+let gameInstances= [];
+for (let i=0; i <games.length; i++) {
+    let game= games[i];
+    let gameInstace= new Game(game.name, game.developer, game.genre, game.platform, game.imageFilePath);
+    gameInstances.push(gameInstace);
 }
-showGameLibrary();
+console.log(gameInstances);
+
+// This will display each game in the array to the console and on the page
+for (let i= 0; i < gameInstances.length; i++) {
+    gameInstances[i].displayGameDataInConsole();
+    gameInstances[i].showGamesOnPage(gameDisplay); // pass in the display container to class method to show games
+}
+
 
